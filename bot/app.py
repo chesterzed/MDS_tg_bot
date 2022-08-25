@@ -3,7 +3,7 @@ from aiogram import executor
 import hook as h
 import cherrypy
 
-from loader import dp
+from loader import dp, bot
 import middlewares, filters, handlers
 from utils.notify_admins import on_startup_notify
 from utils.set_bot_commands import set_default_commands
@@ -22,10 +22,10 @@ async def on_startup(dispatcher):
 
 
 if __name__ == '__main__':
-    dp.bot.delete_webhook()
+    bot.delete_webhook()
 
     # Ставим заново вебхук
-    dp.bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
+    bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
                     certificate=open(h.WEBHOOK_SSL_CERT, 'r'))
 
     # Указываем настройки сервера CherryPy
