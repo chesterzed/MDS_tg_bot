@@ -5,26 +5,27 @@
 <link rel="stylesheet" href="{% static 'css/work/main.css' %}">
 
 <div class="mainPage">
-
+	<div id="openModal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Название</h3>
+					<a href="#close" title="Close" class="close">×</a>
+				</div>
+				<div class="modal-body">
+					Содержимое модального окна...
+				</div>
+			</div>
+		</div>
+	</div>
 	<form action="" method="post" enctype="multipart/form-data">
 
 
 		{% csrf_token %}
 		<div class="templateCard">
 			<div class="container"></div>
-			<div id="openModal" class="modal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">Название</h3>
-							<a href="#close" title="Close" class="close">×</a>
-						</div>
-						<div class="modal-body">
-							Содержимое модального окна...
-						</div>
-					</div>
-				</div>
-			</div>
+
+
 			{% for us in users %}
 			{{ us.tg_id }}
 			{% endfor %}
