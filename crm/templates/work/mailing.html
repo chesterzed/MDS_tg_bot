@@ -70,11 +70,11 @@
 			<div class="modal-body">
 
 				{% for user in users %}
-				<div class="el" id="{{user.name}}">
+				<div class="el" id="{{user.phone}}">
 					<a href="{% url 'staf' user.id %}" style="color:#000;">
 						<div class="templateCard">
 							<div class="card-body">
-								{{user.name}}
+								{{user.phone}}
 							</div>
 						</div>
 					</a>
