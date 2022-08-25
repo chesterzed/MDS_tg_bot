@@ -32,7 +32,7 @@ a:hover {
     height: 50px;
     font-weight: bold;
     font-size: 15pt;
-
+    padding: 5px 25px
 }
 
 /* свойства модального окна по умолчанию */
