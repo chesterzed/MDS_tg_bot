@@ -44,17 +44,17 @@ if __name__ == '__main__':
     # bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
     #                 certificate=open(h.WEBHOOK_SSL_CERT, 'r'))
 
-    # # Указываем настройки сервера CherryPy
-    # cherrypy.config.update({
-    #     'server.socket_host': h.WEBHOOK_LISTEN,
-    #     'server.socket_port': h.WEBHOOK_PORT,
-    #     'server.ssl_module': 'builtin',
-    #     'server.ssl_certificate': h.WEBHOOK_SSL_CERT,
-    #     'server.ssl_private_key': h.WEBHOOK_SSL_PRIV
-    # })
-    # 
-    # # Собственно, запуск!
-    # cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
+    # Указываем настройки сервера CherryPy
+    cherrypy.config.update({
+        'server.socket_host': h.WEBHOOK_LISTEN,
+        'server.socket_port': h.WEBHOOK_PORT,
+        'server.ssl_module': 'builtin',
+        'server.ssl_certificate': h.WEBHOOK_SSL_CERT,
+        'server.ssl_private_key': h.WEBHOOK_SSL_PRIV
+    })
+
+    # Собственно, запуск!
+    cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
 
     executor.set_webhook(
         dispatcher=dp,
