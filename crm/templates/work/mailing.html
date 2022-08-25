@@ -41,9 +41,14 @@
 						<td>Добавите пользоватля/ей</td>
 						<td>
 							<a class="buttonM" href="#openModal">Добавить</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 		</div>
     </form>
 </div>
+
 
 
 
@@ -52,6 +57,7 @@
 {% if mailing %}
 <button class="button" name="delete" type="submit">Удалить</button>
 {% endif %}
+
 
 <div id="openModal" class="modal">
 	<div class="modal-dialog">
@@ -67,7 +73,7 @@
 					<div class="templateCard">
 						<div class="card-body">
 							{{user.phone}}
-							<form method="post" enctype="multipart/form-data">
+							<form method="post">
 								{% csrf_token %}
 								<div class="checkbox">
 									<input type="checkbox" id="click"
@@ -82,7 +88,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
