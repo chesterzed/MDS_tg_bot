@@ -206,25 +206,13 @@
 
         {% for user in users %}
         <div class="el" id="{{user.phone}}">
-
-            <div class="templateCard">
-                <div class="card-body">
-                    {{user.phone}}
-                    <butto<form action="/delete_chat/25" method="post">
-                        <input type="hidden" name="csrfmiddlewaretoken"
-                            value="DctYJWDgXiHe5GkQwtWSY4MVEexOJVUhOrgCFXQIim5n7p5hNRCPrv5NAey9ZCqT">
-                        <button type="submit" name="editor_delete"
-                            style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
-
-                            <img src="/static/img/delete.svg">
-                        </button>
-                        </form>
+            <a href="{% url 'user' user.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{user.phone}}
+                    </div>
                 </div>
-
-
-
-            </div>
-
+            </a>
         </div>
         {% endfor %}
 
