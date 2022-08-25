@@ -351,23 +351,16 @@ def task_connect(req, id):
     photo = ''
     users = User_tg.objects.all()
     photo = task.photo_path
-    print(req.method)
-    print('1')
 
     if req.method == 'POST':
-        print('2')
         data = req.POST
-        print('5')
         user = User_tg.objects.get(phone=task.user_from)
-        print('55')
         if task.user_to == '0':
             text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
             text_succes = 'Данные профиля обновлены по вашей заявке'
         else:
             text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
             text_succes = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
-        print('555')
-        print(data)
         try:
             if 'delete' in data:
                 pass
@@ -377,9 +370,7 @@ def task_connect(req, id):
                     user.save()
         except:
             pass
-        print('5551')
         task.delete()
-        print('edited')
         return redirect('main', 'task')
 
     return render(req, 'work/task_connect.html', {'task': task, 'photo': photo if photo else '', 'users': users})
