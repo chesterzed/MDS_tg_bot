@@ -39,58 +39,53 @@
 					<tr>
 						<td>Добавите пользоватля/ей</td>
 						<td>
-							<a class="buttonM" href="#openModal" onclick="window.location.href = '#openModal';">Добавить</a>
+							<div class="container"></div>
+							<a class="buttonM" href="#openModal">Добавить</a>
 
-							<h1 style="text-align: center; margin-top: 20px; margin-bottom: 20px;">Модальное окно на чистом CSS
-							</h1>
-							<div class="container">
-								<div style="text-align: center;">
-									<a href="#openModal">Открыть модальное окно</a>
-								</div>
-								<div id="openModal" class="modal">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h3 class="modal-title">Название</h3>
-												<a href="#close" title="Close" class="close">×</a>
-											</div>
-											<div class="modal-body">
-												Содержимое модального окна...
-											</div>
+							<div id="openModal" class="modal">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Название</h3>
+											<a href="#close" title="Close" class="close">×</a>
+										</div>
+										<div class="modal-body">
+											Содержимое модального окна...
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<script>
-								document.addEventListener("DOMContentLoaded", function () {
-									var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
-									console.log(scrollbar);
-									document.querySelector('[href="#openModal"]').addEventListener('click', function () {
-										document.body.style.overflow = 'hidden';
-										document.querySelector('#openModal').style.marginLeft = scrollbar;
-									});
-									document.querySelector('[href="#close"]').addEventListener('click', function () {
-										document.body.style.overflow = 'visible';
-										document.querySelector('#openModal').style.marginLeft = '0px';
-									});
-								});
-							</script>
-						</td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
-		<a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
-		<button class="button" type="submit">Сохранить</button>
-		{% if mailing %}
-		<button class="button" name="delete" type="submit">Удалить</button>
-		{% endif %}
 
-	</form>
+
+		</td>
+		</tr>
+		</tbody>
+		</table>
+</div>
+<a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
+<button class="button" type="submit">Сохранить</button>
+{% if mailing %}
+<button class="button" name="delete" type="submit">Удалить</button>
+{% endif %}
+
+</form>
 
 </div>
-
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
+		console.log(scrollbar);
+		document.querySelector('[href="#openModal"]').addEventListener('click', function () {
+			document.body.style.overflow = 'hidden';
+			document.querySelector('#openModal').style.marginLeft = scrollbar;
+		});
+		document.querySelector('[href="#close"]').addEventListener('click', function () {
+			document.body.style.overflow = 'visible';
+			document.querySelector('#openModal').style.marginLeft = '0px';
+		});
+	});
+</script>
 <script>
 	$("input[name='data']").mask('99.99.9999 99:99');
 </script>
