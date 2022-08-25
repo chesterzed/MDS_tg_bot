@@ -210,8 +210,15 @@
             <div class="templateCard">
                 <div class="card-body">
                     {{user.phone}}
-                    <button type="submit" name="editor_delete"
-                        style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;"></button>
+                    <butto<form action="/delete_chat/25" method="post">
+                        <input type="hidden" name="csrfmiddlewaretoken"
+                            value="DctYJWDgXiHe5GkQwtWSY4MVEexOJVUhOrgCFXQIim5n7p5hNRCPrv5NAey9ZCqT">
+                        <button type="submit" name="editor_delete"
+                            style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
+
+                            <img src="/static/img/delete.svg">
+                        </button>
+                        </form>
                 </div>
 
 
