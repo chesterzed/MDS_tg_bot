@@ -12,14 +12,14 @@ from sql.BaseModel import db
 
 
 async def on_startup(dispatcher):
-    bot.delete_webhook()
+    await bot.delete_webhook()
 
     # Ставим заново вебхук
-    bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
+    await bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
                     certificate=open(h.WEBHOOK_SSL_CERT, 'r'))
 
     # Указываем настройки сервера CherryPy
-    cherrypy.config.update({
+    await cherrypy.config.update({
         'server.socket_host': h.WEBHOOK_LISTEN,
         'server.socket_port': h.WEBHOOK_PORT,
         'server.ssl_module': 'builtin',
@@ -28,7 +28,7 @@ async def on_startup(dispatcher):
     })
 
     # Собственно, запуск!
-    cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
+    await cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
 
     # Устанавливаем дефолтные команды
     await set_default_commands(dispatcher)
