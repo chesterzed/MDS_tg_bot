@@ -315,10 +315,13 @@ def add_mailing(req, id=None):
         print(str(data) + "test")
         print(str(req) + "test1")
 
+        for r in req:
+            print(str(r))
+
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
-            return redirect('content_page')
+            return redirect('mailing')
         if id:
             mailing = Mailing.objects.get(id=id)
             mailing.name = data['name'] if 'name' in data else mailing.name

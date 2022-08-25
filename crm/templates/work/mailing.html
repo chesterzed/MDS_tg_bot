@@ -69,12 +69,9 @@
 
 				{% for user in users %}
 				<div class="el" id="{{user.phone}}">
-
 					<div class="templateCard">
 						<div class="card-body">
 							{{user.phone}}
-
-
 							<form method="post">
 								{% csrf_token %}
 								<div class="checkbox">
@@ -84,7 +81,6 @@
 							</form>
 						</div>
 					</div>
-
 				</div>
 				{% endfor %}
 			</div>
