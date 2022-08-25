@@ -67,7 +67,7 @@
     </div>
 
 
-    < class="content">
+    <div class="content">
 
         <div class="row">
             <div class="col">
@@ -205,100 +205,104 @@
         {% if page == 'users' %}
 
         {% for user in users %}
+        <div class="el" id="{{user.phone}}">
 
-
-        {{user.phone}}
-</div>
-
-{% endfor %}
-
-<script>
-    var el = document.getElementById('users')
-    el.classList.add('navItemActive')
-</script>
-
-{% endif %}
-
-
-{% if page == 'task' %}
-
-{% for task in tasks %}
-<div class="el" id="{{task.user_from}}">
-    <a href="{% url 'task_connect' task.id %}" style="color:#000;">
-        <div class="templateCard">
-            <div class="card-body">
-                {{task.user_from}}
-                {% if task.photo_path != '' %}
-                (изменение профиля)
-                {% else %}
-                (нетворкинг)
-                {% endif %}
+            <div class="templateCard">
+                <div class="card-body">
+                    {{user.phone}}
+                </div>
             </div>
+
         </div>
-    </a>
-</div>
-{% endfor %}
+        {% endfor %}
 
-<script>
-    var el = document.getElementById('task')
-    el.classList.add('navItemActive')
-</script>
+        <script>
+            var el = document.getElementById('users')
+            el.classList.add('navItemActive')
+        </script>
 
-{% endif %}
+        {% endif %}
 
 
-{% if page == 'ivent' %}
-{% for ivent in ivents %}
-<div class="el" id="{{ivent.user_from}}">
-    <a href="{% url 'ivent' ivent.id %}" style="color:#000;">
-        <div class="templateCard">
-            <div class="card-body">
-                {{ivent.name}}
-                <!-- {% if task.user_to == '0' %}
+        {% if page == 'task' %}
+
+        {% for task in tasks %}
+        <div class="el" id="{{task.user_from}}">
+            <a href="{% url 'task_connect' task.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{task.user_from}}
+                        {% if task.photo_path != '' %}
+                        (изменение профиля)
+                        {% else %}
+                        (нетворкинг)
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+        <script>
+            var el = document.getElementById('task')
+            el.classList.add('navItemActive')
+        </script>
+
+        {% endif %}
+
+
+        {% if page == 'ivent' %}
+        {% for ivent in ivents %}
+        <div class="el" id="{{ivent.user_from}}">
+            <a href="{% url 'ivent' ivent.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{ivent.name}}
+                        <!-- {% if task.user_to == '0' %}
                         (изменение профиля)
                         {% else %}
                         (нетворкинг)
                         {% endif %} -->
-            </div>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
-</div>
-{% endfor %}
-<script>
-    var el = document.getElementById('ivent')
-    el.classList.add('navItemActive')
-</script>
-{% endif %}
+        {% endfor %}
+        <script>
+            var el = document.getElementById('ivent')
+            el.classList.add('navItemActive')
+        </script>
+        {% endif %}
 
 
 
-{% if page == 'mailing' %}
-{% for mailing in mailings %}
-<div class="el" id="{{mailing.user_from}}">
-    <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
-        <div class="templateCard">
-            <div class="card-body">
-                {{mailing.name}}
-                <!-- {% if task.user_to == '0' %}
+        {% if page == 'mailing' %}
+        {% for mailing in mailings %}
+        <div class="el" id="{{mailing.user_from}}">
+            <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{mailing.name}}
+                        <!-- {% if task.user_to == '0' %}
                         (изменение профиля)
                         {% else %}
                         (нетворкинг)
                         {% endif %} -->
-            </div>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
-</div>
-{% endfor %}
-<script>
-    var el = document.getElementById('mailing')
-    el.classList.add('navItemActive')
-</script>
-{% endif %}
+        {% endfor %}
+        <script>
+            var el = document.getElementById('mailing')
+            el.classList.add('navItemActive')
+        </script>
+        {% endif %}
 
 
 
 
-</div>
+    </div>
 
 
 

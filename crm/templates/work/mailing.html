@@ -71,13 +71,13 @@
 
 				{% for user in users %}
 				<div class="el" id="{{user.phone}}">
-					<a href="{% url 'staf' user.id %}" style="color:#000;">
-						<div class="templateCard">
-							<div class="card-body">
-								{{user.phone}}
-							</div>
+
+					<div class="templateCard">
+						<div class="card-body">
+							{{user.phone}}
 						</div>
-					</a>
+					</div>
+
 				</div>
 				{% endfor %}
 			</div>
