@@ -1,8 +1,8 @@
 import cherrypy
 from aiogram.types import Update
 
-from club2.bot.data.config import BOT_TOKEN
-from club2.bot.loader import bot
+from data.config import BOT_TOKEN
+from loader import bot
 
 WEBHOOK_HOST = '62.113.110.248'
 WEBHOOK_PORT = 443  # 443, 80, 88 или 8443 (порт должен быть открыт!)
