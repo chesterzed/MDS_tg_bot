@@ -317,7 +317,7 @@ def add_mailing(req, id=None):
 
         for r in req.POST.dict():
             print(str(r) + "t")
-            
+
         for r in req.POST:
             print(str(r) + "t1")
 
