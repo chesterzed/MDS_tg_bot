@@ -1,6 +1,6 @@
 from aiogram import executor
 
-from club2.bot import hook as h
+import hook as h
 import cherrypy
 
 from loader import dp
