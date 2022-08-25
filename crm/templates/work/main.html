@@ -207,97 +207,93 @@
         {% for user in users %}
 
 
+        {{user.phone}}
+</div>
+
+{% endfor %}
+
+<script>
+    var el = document.getElementById('users')
+    el.classList.add('navItemActive')
+</script>
+
+{% endif %}
+
+
+{% if page == 'task' %}
+
+{% for task in tasks %}
+<div class="el" id="{{task.user_from}}">
+    <a href="{% url 'task_connect' task.id %}" style="color:#000;">
         <div class="templateCard">
             <div class="card-body">
-                {{user.phone}}
+                {{task.user_from}}
+                {% if task.photo_path != '' %}
+                (изменение профиля)
+                {% else %}
+                (нетворкинг)
+                {% endif %}
             </div>
         </div>
+    </a>
+</div>
+{% endfor %}
+
+<script>
+    var el = document.getElementById('task')
+    el.classList.add('navItemActive')
+</script>
+
+{% endif %}
 
 
-        {% endfor %}
-
-        <script>
-            var el = document.getElementById('users')
-            el.classList.add('navItemActive')
-        </script>
-
-        {% endif %}
-
-
-        {% if page == 'task' %}
-
-        {% for task in tasks %}
-        <div class="el" id="{{task.user_from}}">
-            <a href="{% url 'task_connect' task.id %}" style="color:#000;">
-                <div class="templateCard">
-                    <div class="card-body">
-                        {{task.user_from}}
-                        {% if task.photo_path != '' %}
-                        (изменение профиля)
-                        {% else %}
-                        (нетворкинг)
-                        {% endif %}
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-
-        <script>
-            var el = document.getElementById('task')
-            el.classList.add('navItemActive')
-        </script>
-
-        {% endif %}
-
-
-        {% if page == 'ivent' %}
-        {% for ivent in ivents %}
-        <div class="el" id="{{ivent.user_from}}">
-            <a href="{% url 'ivent' ivent.id %}" style="color:#000;">
-                <div class="templateCard">
-                    <div class="card-body">
-                        {{ivent.name}}
-                        <!-- {% if task.user_to == '0' %}
+{% if page == 'ivent' %}
+{% for ivent in ivents %}
+<div class="el" id="{{ivent.user_from}}">
+    <a href="{% url 'ivent' ivent.id %}" style="color:#000;">
+        <div class="templateCard">
+            <div class="card-body">
+                {{ivent.name}}
+                <!-- {% if task.user_to == '0' %}
                         (изменение профиля)
                         {% else %}
                         (нетворкинг)
                         {% endif %} -->
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
-        {% endfor %}
-        <script>
-            var el = document.getElementById('ivent')
-            el.classList.add('navItemActive')
-        </script>
-        {% endif %}
+    </a>
+</div>
+{% endfor %}
+<script>
+    var el = document.getElementById('ivent')
+    el.classList.add('navItemActive')
+</script>
+{% endif %}
 
 
 
-        {% if page == 'mailing' %}
-        {% for mailing in mailings %}
-        <div class="el" id="{{mailing.user_from}}">
-            <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
-                <div class="templateCard">
-                    <div class="card-body">
-                        {{mailing.name}}
-                        <!-- {% if task.user_to == '0' %}
+{% if page == 'mailing' %}
+{% for mailing in mailings %}
+<div class="el" id="{{mailing.user_from}}">
+    <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
+        <div class="templateCard">
+            <div class="card-body">
+                {{mailing.name}}
+                <!-- {% if task.user_to == '0' %}
                         (изменение профиля)
                         {% else %}
                         (нетворкинг)
                         {% endif %} -->
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
-        {% endfor %}
-        <script>
-            var el = document.getElementById('mailing')
-            el.classList.add('navItemActive')
-        </script>
-        {% endif %}
+    </a>
+</div>
+{% endfor %}
+<script>
+    var el = document.getElementById('mailing')
+    el.classList.add('navItemActive')
+</script>
+{% endif %}
 
 
 
