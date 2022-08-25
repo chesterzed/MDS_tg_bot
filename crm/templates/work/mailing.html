@@ -75,14 +75,14 @@
 					<div class="templateCard">
 						<div class="card-body">
 							{{user.phone}}
-							<form action="/delete_chat/25" method="post">
-								<input type="hidden" name="csrfmiddlewaretoken"
-									value="DctYJWDgXiHe5GkQwtWSY4MVEexOJVUhOrgCFXQIim5n7p5hNRCPrv5NAey9ZCqT">
-								<button type="submit" name="editor_delete"
-									style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
 
-									<img src="/static/img/delete.svg">
-								</button>
+
+							<form action="{% url 'delete_chat' channel.id %}" method="post">
+								{% csrf_token %}
+								<div class="checkbox">
+									<input type="checkbox" id="click">
+									<label for="click" class="text"> Чекбокс </label>
+								</div>
 							</form>
 						</div>
 					</div>
