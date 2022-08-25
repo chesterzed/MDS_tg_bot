@@ -212,7 +212,7 @@ def create_chat_view(req):
         chat.save()
 
         users = data['username'].replace("@", '').replace(' ', '').split(',')
-        create_chat(title=chat.name, users=users, id=chat.id)
+        # create_chat(title=chat.name, users=users, id=chat.id)
         return redirect('main', 'chats')
 
     return render(req, 'work/createchat.html')
@@ -241,6 +241,7 @@ def task_connect(req, id):
             text_succes = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
         try:
             if 'delete' in data:
+                # send_message(user.tg_id, text_alone)
                 pass
             elif 'connect' in data:
                 if photo:
@@ -311,6 +312,7 @@ def add_mailing(req, id=None):
     """Создать мероприятие"""
     if req.method == 'POST':
         data = req.POST.dict()
+        print(data)
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
