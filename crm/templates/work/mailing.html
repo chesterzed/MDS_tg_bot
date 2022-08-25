@@ -43,19 +43,20 @@
 							<a class="buttonM" href="#openModal">Добавить</a>
 
 
-                        </td>
+						</td>
 
-                    </tr>
-                </tbody>
+					</tr>
+				</tbody>
 
-            </table>
+			</table>
 		</div>
-            <a href="{% url 'main' 'mailing' %}" style="margin-right: 2vw"><Назад</a>
-            <button class="button" type="submit">Сохранить</button>
-            {% if mailing %}
-                <button class="button" name="delete" type="submit">Удалить</button>
-            {% endif %}
-    </form>
+		<a href="{% url 'main' 'mailing' %}" style="margin-right: 2vw">
+			<Назад< /a>
+				<button class="button" type="submit">Сохранить</button>
+				{% if mailing %}
+				<button class="button" name="delete" type="submit">Удалить</button>
+				{% endif %}
+	</form>
 </div>
 
 
