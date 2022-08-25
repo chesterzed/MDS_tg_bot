@@ -11,6 +11,20 @@
 
 		{% csrf_token %}
 		<div class="templateCard">
+			<div class="container"></div>
+			<div id="openModal" class="modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3 class="modal-title">Название</h3>
+							<a href="#close" title="Close" class="close">×</a>
+						</div>
+						<div class="modal-body">
+							Содержимое модального окна...
+						</div>
+					</div>
+				</div>
+			</div>
 			{% for us in users %}
 			{{ us.tg_id }}
 			{% endfor %}
@@ -39,22 +53,10 @@
 					<tr>
 						<td>Добавите пользоватля/ей</td>
 						<td>
-							<div class="container"></div>
+
 							<a class="buttonM" href="#openModal">Добавить</a>
 
-							<div id="openModal" class="modal">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h3 class="modal-title">Название</h3>
-											<a href="#close" title="Close" class="close">×</a>
-										</div>
-										<div class="modal-body">
-											Содержимое модального окна...
-										</div>
-									</div>
-								</div>
-							</div>
+
 		</div>
 
 
