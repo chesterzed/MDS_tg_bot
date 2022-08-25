@@ -71,7 +71,7 @@ def create_user(req):
         usersuccess = []
         for us in users:
             usersuccess.append(us.phone)
-            if us.phone!=user_tg.phone:
+            if us.phone != user_tg.phone:
                 user_tg.save()
                 usersuccess.append(user_tg.phone)
                 return redirect('user', user_tg.id)
@@ -86,7 +86,6 @@ def add_mailing(req, id=None):
     """Создать мероприятие"""
     if req.method == 'POST':
         data = req.POST.dict()
-
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
@@ -142,8 +141,6 @@ def add_mailing(req, id=None):
         #         return redirect('login')
         
     return render(req, 'work/mailing.html', {'users':users})
-
-
 
 
 def add_ivent(req, id=None):
