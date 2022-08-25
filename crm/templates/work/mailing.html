@@ -50,18 +50,13 @@
 </div>
 
 
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+
 <a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
 <button class="button" type="submit">Сохранить</button>
 {% if mailing %}
 <button class="button" name="delete" type="submit">Удалить</button>
 {% endif %}
 
-</form>
 <div id="openModal" class="modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -91,7 +86,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
