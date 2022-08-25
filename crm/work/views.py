@@ -316,7 +316,7 @@ def add_mailing(req, id=None):
         print(str(req) + "test1")
 
         for r in req:
-            print(str(r))
+            print(str(r) + "t")
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
