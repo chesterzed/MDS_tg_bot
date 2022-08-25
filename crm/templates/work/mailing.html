@@ -41,13 +41,14 @@
 						<td>Добавите пользоватля/ей</td>
 						<td>
 							<a class="buttonM" href="#openModal">Добавить</a>
-                            <a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
-                            <button class="button" type="submit">Сохранить</button>
-                            {% if mailing %}
-                            <button class="button" name="delete" type="submit">Удалить</button>
-                            {% endif %}
+
                         </td>
                     </tr>
+                    <a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
+                    <button class="button" type="submit">Сохранить</button>
+                    {% if mailing %}
+                        <button class="button" name="delete" type="submit">Удалить</button>
+                    {% endif %}
                 </tbody>
             </table>
 		</div>
