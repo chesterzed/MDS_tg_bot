@@ -46,6 +46,51 @@ def main(req, page=None):
         return redirect('login')
 
 
+def create_staf(req):
+    """Создание персонала"""
+    messages = []
+    if req.method == 'POST':
+        user = User()
+        data = req.POST.dict()
+        user.name = data['name']
+        user.phone = data['phone']
+        user.username = data['phone']
+        user.manage = True if data['manage'] == 'true' else False
+        user.user_manage = True if data['user_manage'] == 'true' else False
+        user.chat_manage = True if data['chat_manage'] == 'true' else False
+        user.channel_manage = True if data['channel_manage'] == 'true' else False
+        user.password = make_password(data['psswd'])
+        user.save()
+        return redirect('staf', user.id)
+
+    return render(req, 'work/createstaf.html', {'messages': messages})
+
+
+def staf(req, id=None):
+    """Страница редактирования данных персонала"""
+    messages = []
+    if req.user.is_authenticated:
+        user = User.objects.get(id=id)
+        if user:
+            if req.method == 'POST':
+                data = req.POST.dict()
+
+                if 'delete' in data:
+                    user.delete()
+                    return redirect('main', 'manage')
+
+                user.name = data['name']
+                user.phone = data['phone']
+                user.manage = True if data['manage'] == 'true' else False
+                user.user_manage = True if data['user_manage'] == 'true' else False
+                user.chat_manage = True if data['chat_manage'] == 'true' else False
+                user.channel_manage = True if data['channel_manage'] == 'true' else False
+                user.save()
+                messages.append('Изменения сохранены!')
+
+            return render(req, 'work/staf.html', {'user': user, 'messages': messages})
+
+
 def create_user(req):
     users = User_tg.objects.all()
 
@@ -81,147 +126,6 @@ def create_user(req):
     return render(req, 'work/createuser.html', {'users':users})
 
 
-def add_mailing(req, id=None):
-    users = User_tg.objects.all()
-    """Создать мероприятие"""
-    if req.method == 'POST':
-        data = req.POST.dict()
-
-        if 'delete' in data and id:
-            mailing = Mailing.objects.get(id=id)
-            mailing.delete()
-            return redirect('content_page')
-        if id:
-            mailing = Mailing.objects.get(id=id)
-            mailing.name = data['name'] if 'name' in data else mailing.name
-            # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
-            
-            mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-
-
-            mailing.save()
-            data = {
-                'mailing': Mailing.objects.get(id=id)
-            }
-            
-            return render(req, 'work/mailing.html', data)
-        
-        mailing = Mailing()
-        mailing.name = data['name']
-        # mailing.type_mailing = data['type_mailing']
-        mailing.desc = data['desc']
-
-        file = req.FILES['photo']
-        file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
-        
-        mailing.photo = f'../crm/media/{mailing.id}.{str(file.name).split(".")[-1]}'
-        
-        mailing.save()
-        return redirect('mailing', mailing.id, )
-        
-
-
-
-    data = {}
-    if id:
-        data = {
-            'mailing': Mailing.objects.get(id=id)
-        }
-
-
-
-        # usersuccess = []
-        # for mg in users:
-        #     usersuccess.append(mg.phone)
-        #     if mg.phone!=mailing.phone:
-        #         mailing.save()
-        #         usersuccess.append(mailing.phone)
-        #         return redirect('user', mailing.id)
-        #     else:
-        #         return redirect('login')
-        
-    return render(req, 'work/mailing.html', {'users':users})
-
-
-def add_ivent(req, id=None):
-    """Создать мероприятие"""
-    if req.method == 'POST':
-        data = req.POST.dict()
-
-        if 'delete' in data and id:
-            ivent = Ivent.objects.get(id=id)
-            ivent.delete()
-            return redirect('content_page')
-        if id:
-            ivent = Ivent.objects.get(id=id)
-            ivent.name = data['name'] if 'name' in data else ivent.name
-            ivent.type_ivent = data['type_ivent'] if 'type_ivent' in data else ivent.type_ivent
-            ivent.date = data['data'] if 'data' in data else ivent.date
-            ivent.desc = data['desc'] if 'desc' in data else ivent.desc
-
-            if 'photo' in req.FILES:
-                file = req.FILES['photo']
-                file_name = default_storage.save(f'{ivent.id}.{str(file.name).split(".")[-1]}', file)
-
-                ivent.photo = f'../crm/media/{ivent.id}.{str(file.name).split(".")[-1]}'
-
-            ivent.save()
-            data = {
-                'ivent': Ivent.objects.get(id=id)
-            }
-
-            return render(req, 'work/addivent.html', data)
-
-        ivent = Ivent()
-        ivent.name = data['name']
-        ivent.type_ivent = data['type_ivent']
-        ivent.date = data['data']
-        ivent.desc = data['desc']
-
-        file = req.FILES['photo']
-        file_name = default_storage.save(f'{ivent.id}.{str(file.name).split(".")[-1]}', file)
-
-        ivent.photo = f'../crm/media/{ivent.id}.{str(file.name).split(".")[-1]}'
-        ivent.save()
-
-        return redirect('ivent', ivent.id)
-
-    data = {}
-    if id:
-        data = {
-            'ivent': Ivent.objects.get(id=id)
-        }
-        
-    return render(req, 'work/addivent.html', data)
-
-
-
-
-def staf(req, id=None):
-    """Страница редактирования данных персонала"""
-    messages = []
-    if req.user.is_authenticated:
-        user = User.objects.get(id=id)
-        if user:
-            if req.method == 'POST':
-                data = req.POST.dict()
-
-                if 'delete' in data:
-                    user.delete()
-                    return redirect('main', 'manage')
-
-                user.name = data['name']
-                user.phone = data['phone']
-                user.manage = True if data['manage'] == 'true' else False
-                user.user_manage = True if data['user_manage'] == 'true' else False
-                user.chat_manage = True if data['chat_manage'] == 'true' else False
-                user.channel_manage = True if data['channel_manage'] == 'true' else False
-                user.save()
-                messages.append('Изменения сохранены!')
-
-            return render(req, 'work/staf.html', {'user': user, 'messages': messages})
-
-
 def user_page(req, id=None):
     """Страница пользователя"""
     messages = []
@@ -252,26 +156,6 @@ def user_page(req, id=None):
         if user:
             ban = '_ban' in user.tg_id
             return render(req, 'work/user.html', {'user': user, 'ban': ban, 'messages': messages})
-
-
-def create_staf(req):
-    """Создание персонала"""
-    messages = []
-    if req.method == 'POST':
-        user = User()
-        data = req.POST.dict()
-        user.name = data['name']
-        user.phone = data['phone']
-        user.username = data['phone']
-        user.manage = True if data['manage'] == 'true' else False
-        user.user_manage = True if data['user_manage'] == 'true' else False
-        user.chat_manage = True if data['chat_manage'] == 'true' else False
-        user.channel_manage = True if data['channel_manage'] == 'true' else False
-        user.password = make_password(data['psswd'])
-        user.save()
-        return redirect('staf', user.id)
-
-    return render(req, 'work/createstaf.html', {'messages': messages})
 
 
 def create_channel_view(req):
@@ -340,9 +224,6 @@ def delete_chat(req, id=None):
     return redirect('main', 'chats')
 
 
-
-
-
 def task_connect(req, id):
     task = TaskConnect.objects.get(id=id)
     photo = ''
@@ -371,3 +252,111 @@ def task_connect(req, id):
         return redirect('main', 'task')
 
     return render(req, 'work/task_connect.html', {'task': task, 'photo': photo if photo else '', 'users': users})
+
+
+def add_ivent(req, id=None):
+    """Создать мероприятие"""
+    if req.method == 'POST':
+        data = req.POST.dict()
+
+        if 'delete' in data and id:
+            ivent = Ivent.objects.get(id=id)
+            ivent.delete()
+            return redirect('content_page')
+        if id:
+            ivent = Ivent.objects.get(id=id)
+            ivent.name = data['name'] if 'name' in data else ivent.name
+            ivent.type_ivent = data['type_ivent'] if 'type_ivent' in data else ivent.type_ivent
+            ivent.date = data['data'] if 'data' in data else ivent.date
+            ivent.desc = data['desc'] if 'desc' in data else ivent.desc
+
+            if 'photo' in req.FILES:
+                file = req.FILES['photo']
+                file_name = default_storage.save(f'{ivent.id}.{str(file.name).split(".")[-1]}', file)
+
+                ivent.photo = f'../crm/media/{ivent.id}.{str(file.name).split(".")[-1]}'
+
+            ivent.save()
+            data = {
+                'ivent': Ivent.objects.get(id=id)
+            }
+
+            return render(req, 'work/addivent.html', data)
+
+        ivent = Ivent()
+        ivent.name = data['name']
+        ivent.type_ivent = data['type_ivent']
+        ivent.date = data['data']
+        ivent.desc = data['desc']
+
+        file = req.FILES['photo']
+        file_name = default_storage.save(f'{ivent.id}.{str(file.name).split(".")[-1]}', file)
+
+        ivent.photo = f'../crm/media/{ivent.id}.{str(file.name).split(".")[-1]}'
+        ivent.save()
+
+        return redirect('ivent', ivent.id)
+
+    data = {}
+    if id:
+        data = {
+            'ivent': Ivent.objects.get(id=id)
+        }
+
+    return render(req, 'work/addivent.html', data)
+
+
+def add_mailing(req, id=None):
+    users = User_tg.objects.all()
+    """Создать мероприятие"""
+    if req.method == 'POST':
+        data = req.POST.dict()
+
+        if 'delete' in data and id:
+            mailing = Mailing.objects.get(id=id)
+            mailing.delete()
+            return redirect('content_page')
+        if id:
+            mailing = Mailing.objects.get(id=id)
+            mailing.name = data['name'] if 'name' in data else mailing.name
+            # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
+
+            mailing.desc = data['desc'] if 'desc' in data else mailing.desc
+
+            mailing.save()
+            data = {
+                'mailing': Mailing.objects.get(id=id)
+            }
+
+            return render(req, 'work/mailing.html', data)
+
+        mailing = Mailing()
+        mailing.name = data['name']
+        # mailing.type_mailing = data['type_mailing']
+        mailing.desc = data['desc']
+
+        file = req.FILES['photo']
+        file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
+
+        mailing.photo = f'../crm/media/{mailing.id}.{str(file.name).split(".")[-1]}'
+
+        mailing.save()
+        return redirect('mailing', mailing.id, )
+
+    data = {}
+    if id:
+        data = {
+            'mailing': Mailing.objects.get(id=id)
+        }
+
+        # usersuccess = []
+        # for mg in users:
+        #     usersuccess.append(mg.phone)
+        #     if mg.phone!=mailing.phone:
+        #         mailing.save()
+        #         usersuccess.append(mailing.phone)
+        #         return redirect('user', mailing.id)
+        #     else:
+        #         return redirect('login')
+
+    return render(req, 'work/mailing.html', {'users': users})
