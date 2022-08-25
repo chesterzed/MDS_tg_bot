@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/work/main.css' %}">
+
+<div class="mainPage">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="templateCard">
+            <table class="table">
+                <tbody style="width: 30vw;">
+                    <tr>
+                        <td>Название</td>
+                        <td>
+                            <input value='{{ivent.name}}' type="text" required name="name" minlength="2"
+                                maxlength="1000" class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Тип</td>
+                        <td>
+                            <input value='{{ivent.type_ivent}}' type="text" required name="type_ivent"
+                                class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Описание</td>
+                        <td>
+                            <textarea type="text" name="desc" class="searchInpt" placeholder="*"
+                                style="border: 1px solid rgba(142,148,177,.5); height: 200px; width: 300px;"
+                                required>{{ivent.desc}}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Фото</td>
+                        <td>
+                            <input type="file" name="photo" class="searchInptPhoto" id="fileName" accept=".jpg,.png"
+                                required onchange="validateFileType()" style="border: 0;">
+                            <script type="text/javascript">
+                                function validateFileType() {
+                                    var fileName = document.getElementById("fileName").value;
+                                    var idxDot = fileName.lastIndexOf(".") + 1;
+                                    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                                    if (extFile == "jpg" || extFile == "png") {
+                                        //TO DO
+                                    } else {
+                                        alert("Только jpg или png можно выбрать!");
+                                        document.getElementById('fileName').value = '';
+                                    }
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Дата и время</td>
+                        <td>
+                            <input value='{{ivent.date}}' type="text" name="data" placeholder="дд.мм.гггг ч:м"
+                                class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);" required>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="{% url 'main' 'ivent' %}"><button class="button" type="button">Назад</button></a>
+        <button class="button" type="submit">Сохранить</button>
+        {% if ivent %}
+        <button class="button" name="delete" type="submit">Удалить</button>
+        {% endif %}
+
+    </form>
+
+</div>
+
+<script>
+    $("input[name='data']").mask('99.99.9999 99:99');
+</script>
+
+{% endblock main %}

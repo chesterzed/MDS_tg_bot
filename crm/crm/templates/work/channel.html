@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'css/work/main.css' %}">
+
+<div class="mainPage">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="templateCard">
+            <table class="table">
+                <tbody style="width: 30vw;">
+                    <tr>
+                        <td>Название канала</td>
+                        <td><input value="{{channel.name}}" type="text" name="name" minlength="2" maxlength="1000"
+                                class="searchInpt"></td>
+                    </tr>
+                    <tr>
+                        <td>Добавить админа(id telegram)</td>
+                        <td><input type="text" name="add_admin" class="searchInpt"></td>
+                    </tr>
+                    <tr>
+                        <td>User_name канала</td>
+                        <td>{{channel.link}}</td>
+                    </tr>
+                    <tr>
+                        <td>Описание</td>
+                        <td>{{channel.desc}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="{% url 'main' 'channels' %}"><button class="button" type="button">Назад</button></a>
+        <button class="button" type="submit" name="delete">Удалить</button>
+        <button class="button" type="submit">Сохранить</button>
+    </form>
+
+</div>
+
+{% endblock main %}

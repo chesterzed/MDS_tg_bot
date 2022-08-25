@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<link rel="stylesheet" href="{% static 'css/work/main.css' %}">
+
+<div class="mainPage">
+
+	<form action="" method="post" enctype="multipart/form-data">
+
+
+		{% csrf_token %}
+		<div class="templateCard">
+			{% for us in users %}
+			{{ us.tg_id }}
+			{% endfor %}
+			<table class="table">
+				<tbody style="width: 30vw;">
+					<tr>
+						<td>Название</td>
+						<td>
+							<input value='{{mailing.name}}' type="text" required name="name" minlength="2" maxlength="1000"
+								placeholder="*" class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
+						</td>
+					</tr>
+					<tr>
+						<td>Описание</td>
+						<td>
+							<textarea type="text" name="desc" class="searchInpt" placeholder="*" required
+								style="border: 1px solid rgba(142,148,177,.5); height: 200px; width: 300px;">{{mailing.desc}}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Фото</td>
+						<td>
+							<input type="file" name="photo" class="searchInptPhoto" id="fileName" required style="border: 0;">
+						</td>
+					</tr>
+					<tr>
+						<td>Название</td>
+						<td>
+							<input value='{{mailing.name}}' type="text" required name="name" minlength="2" maxlength="1000"
+								placeholder="*" class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<a href="{% url 'main' 'mailing' %}"><button class="button" type="button">Назад</button></a>
+		<button class="button" type="submit">Сохранить</button>
+		{% if mailing %}
+		<button class="button" name="delete" type="submit">Удалить</button>
+		{% endif %}
+
+	</form>
+
+</div>
+
+<script>
+	$("input[name='data']").mask('99.99.9999 99:99');
+</script>
+
+{% endblock main %}

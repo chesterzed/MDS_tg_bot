@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<link rel="stylesheet" href="{% static 'css/work/main.css' %}">
+
+<div class="mainPage">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="templateCard">
+
+            <table class="table">
+                <h1 class="title-blok">Основная информация</h1>
+                <tbody style="width: 30vw;">
+                    <tr>
+                        <td>Номер телефона</td>
+                        <td>{{user.phone}}</td>
+                    </tr>
+                    <tr>
+                        <td>Имя</td>
+                        <td><input pattern="^[А-Яа-яЁё\s]+$" required type="text" value="{{user.name}}" minlength="2"
+                                maxlength="1000" name="name">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table">
+                <h1>Прочее</h1>
+                <tbody style="width: 30vw;">
+                    <tr>
+                        <td>Информация для нетворкинга</td>
+                        <td><textarea name="about" required id="" placeholder="*" cols="50"
+                                rows="10">{{user.about}}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Описание</td>
+                        <td><textarea name="about_1" required id="" placeholder="*" cols="50"
+                                rows="10">{{user.about_1}}</textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Бизнес</td>
+                        <td><textarea name="about_2" required id="" placeholder="*" cols="50"
+                                rows="10">{{user.about_2}}</textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Запросы</td>
+                        <td><textarea name="about_3" required id="" placeholder="*" cols="50"
+                                rows="10">{{user.about_3}}</textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Компетенции</td>
+                        <td><textarea name="about_4" required id="" placeholder="*" cols="50"
+                                rows="10">{{user.about_4}}</textarea></td>
+                    </tr>
+            </table>
+
+        </div>
+        <a href="{% url 'main' 'users' %}"><button class="button" type="button">Назад</button></a>
+        <button class="button" type="submit" name="delete" style="color: red; border-color: red;">Удалить</button>
+        {% if ban %}
+        <button class="button" type="submit" name="ban" style="color: red; border-color: red;">Разблокировать</button>
+        {% else %}
+        <button class="button" type="submit" name="ban" style="color: red; border-color: red;">Заблокировать</button>
+        {% endif %}
+        <button class="button" type="submit">Сохранить</button>
+    </form>
+
+</div>
+
+{% endblock main %}
