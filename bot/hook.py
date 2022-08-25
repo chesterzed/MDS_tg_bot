@@ -4,9 +4,9 @@ from aiogram.types import Update
 from data.config import BOT_TOKEN
 from loader import bot
 
-WEBHOOK_HOST = '62.113.110.248'
+WEBHOOK_HOST = '109.68.213.180'
 WEBHOOK_PORT = 443  # 443, 80, 88 или 8443 (порт должен быть открыт!)
-WEBHOOK_LISTEN = '62.113.110.248'  # На некоторых серверах придется указывать такой же IP, что и выше
+WEBHOOK_LISTEN = '109.68.213.180'  # На некоторых серверах придется указывать такой же IP, что и выше
 
 WEBHOOK_SSL_CERT = 'webhook_cert.pem'  # Путь к сертификату
 WEBHOOK_SSL_PRIV = 'webhook_pkey.pem'  # Путь к приватному ключу
