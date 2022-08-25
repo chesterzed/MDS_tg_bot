@@ -187,7 +187,7 @@ def channel_view(req, id):
 
         if 'delete' in data:
             channel.delete()
-            delete_channel(channel.link)
+            # delete_channel(channel.link)
             return redirect('main', 'channels')
         else:
             channel.name = data['name']
@@ -196,7 +196,7 @@ def channel_view(req, id):
             if 'add_admin' in data and data['add_admin']:
                 add_admin(channel.tg_id, int(data['add_admin']))
 
-            change_channel(data['name'], channel.link)
+            # change_channel(data['name'], channel.link)
             return render(req, 'work/channel.html', {'channel': channel})
     
     else:
@@ -235,10 +235,10 @@ def task_connect(req, id):
         user = User_tg.objects.get(phone=task.user_from)
         if task.user_to == '0':
             text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
-            text_succes = 'Данные профиля обновлены по вашей заявке'
+            text_success = 'Данные профиля обновлены по вашей заявке'
         else:
             text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
-            text_succes = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
+            text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
         try:
             if 'delete' in data:
                 # send_message(user.tg_id, text_alone)
@@ -247,6 +247,7 @@ def task_connect(req, id):
                 if photo:
                     user.photo = photo
                     user.save()
+                # send_message(user.tg_id, text_success)
         except:
             pass
         task.delete()
