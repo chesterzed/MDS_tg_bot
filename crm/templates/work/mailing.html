@@ -72,7 +72,7 @@
 					<div class="templateCard">
 						<div class="card-body">
 							{{user.phone}}
-							<form method="post">
+							<form method="post" enctype="multipart/form-data">
 								{% csrf_token %}
 								<div class="checkbox">
 									<input type="checkbox" id="click"
