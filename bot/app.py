@@ -20,10 +20,10 @@ async def on_startup(dispatcher):
 
 
 if __name__ == '__main__':
-    bot.delete_webhook()
+    await bot.delete_webhook()
 
     # Ставим заново вебхук
-    bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
+    await bot.set_webhook(url=h.WEBHOOK_URL_BASE + h.WEBHOOK_URL_PATH,
                     certificate=open(h.WEBHOOK_SSL_CERT, 'r'))
 
     # Указываем настройки сервера CherryPy
