@@ -10,9 +10,6 @@
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="templateCard">
-            {% for us in users %}
-            {{ us.phone }}
-            {% endfor %}
             <table class="table">
                 <h1>Личное</h1>
                 <tbody style="width: 30vw;">
