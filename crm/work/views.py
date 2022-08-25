@@ -312,7 +312,7 @@ def add_mailing(req, id=None):
     """Создать мероприятие"""
     if req.method == 'POST':
         data = req.POST.dict()
-        print(data)
+        print(data + "test")
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
