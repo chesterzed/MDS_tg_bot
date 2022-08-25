@@ -11,17 +11,7 @@ import time
 from sql.BaseModel import db
 
 
-
-
 async def on_startup(dispatcher):
-    # Устанавливаем дефолтные команды
-    await set_default_commands(dispatcher)
-
-    # Уведомляет про запуск
-    await on_startup_notify(dispatcher)
-
-
-if __name__ == '__main__':
     bot.delete_webhook()
 
     # Ставим заново вебхук
@@ -40,6 +30,14 @@ if __name__ == '__main__':
     # Собственно, запуск!
     cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
 
+    # Устанавливаем дефолтные команды
+    await set_default_commands(dispatcher)
+
+    # Уведомляет про запуск
+    await on_startup_notify(dispatcher)
+
+
+if __name__ == '__main__':
     executor.start_polling(dp, on_startup=on_startup)
     
     while True:
