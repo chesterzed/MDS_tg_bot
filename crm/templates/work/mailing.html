@@ -82,14 +82,14 @@
 
 
 
-							<form method="post">
+							<form method="post" action="checkbox">
 								{% csrf_token %}
 
 
-								<select class="checkbox">
-									<input type="checkbox" id="click"
+								<div class="checkbox">
+									<input type="checkbox" id="click" name="data" value="1"
 										style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
-								</select>
+								</div>
 
 
 							</form>
