@@ -161,8 +161,8 @@
 				console.log(e.value == 'true')
 			}
 			else {
-				if (our.indexOf(e.value) != -1) {
-					our.splice(our.indexOf(e.value), 1);
+				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
+					our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1);
 				}
 			}
 			console.log(our)
