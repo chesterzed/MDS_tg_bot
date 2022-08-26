@@ -164,6 +164,13 @@
 				console.log(e.value == 'true')
 				our.forEach((ourEl) => {
 					document.querySelector('#ourInput').value += (ourEl + ' ')
+					document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
+						if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
+							elf.splice(elf.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
+							document.querySelector('#ourInput').value = elf.join(' ')
+						}
+					})
+
 				})
 			}
 			else {
@@ -173,6 +180,7 @@
 			}
 			console.log(our)
 			console.log(document.querySelector('#ourInput').value)
+
 		})
 	})
 
