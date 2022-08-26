@@ -122,7 +122,7 @@ def create_chat(title, users):
                 print(el)
                 user = User_tg.objects.get(phone=el)
                 print(user.tg_id)
-                user.chat = chat.tg_id
+                # user.chat = chat.tg_id
                 user.save()
                 client.send_message(
                     'mdstest_bot',
