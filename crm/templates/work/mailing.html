@@ -143,22 +143,26 @@
 		e.addEventListener('change', (ev) => {
 			if (e.value == 'true') {
 				our.push(e.parentElement.querySelector('span').innerHTML)
-				console.log()
-				console.log(e.value == 'true')
-				our.forEach((ourEl) => {
-					document.querySelector('#ourInput').value += (ourEl + ' ')
-					console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
-					document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
-						if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
-							document.querySelector('#ourInput').value += ourEl
-                            console.log(elf)
-						}
-                        else{
-							our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
-                        }
-					})
-
-				})
+                let str = ''
+                our.forEach((e)=>{
+                    str += e
+                })
+                document.querySelector('#ourInput').value = str
+				// console.log()
+				// console.log(e.value == 'true')
+				// our.forEach((ourEl) => {
+				// 	document.querySelector('#ourInput').value += (ourEl + ' ')
+				// 	console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
+				// 	document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
+				// 		if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
+				// 			document.querySelector('#ourInput').value += ourEl
+                //             console.log(elf)
+				// 		}
+                //         else{
+				// 			our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
+                //         }
+				// 	})
+				// })
 			}
 			else {
 				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
