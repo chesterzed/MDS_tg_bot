@@ -81,14 +81,7 @@
 										<div class="el" id="{{user.phone}}">
 											<div class="templateCard">
 												<div class="card-body">
-
-													<span>
-														{{user.phone}}
-													</span>
-
-
-
-
+													<span>{{user.phone}}</span>
 													{% csrf_token %}
 													<select name="manage" id="{{user.phone}}"
 														style="border: 0;  float: right; transform: scale(1.2); ">
