@@ -164,7 +164,7 @@
 				console.log(e.value == 'true')
 				our.forEach((ourEl) => {
 					document.querySelector('#ourInput').value += (ourEl + ' ')
-					console.log(document.querySelector('#ourInput').value.split(' '))
+					console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
 					document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
 						if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
 							elf.splice(elf.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
