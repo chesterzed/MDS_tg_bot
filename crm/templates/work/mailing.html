@@ -150,7 +150,7 @@
 					console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
 					document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
 						if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
-							document.querySelector('#ourInput').value = elf.join(' ')
+							document.querySelector('#ourInput').value = elf
 						}
                         else{
 							elf.splice(elf.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
