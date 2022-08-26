@@ -89,7 +89,7 @@ class Mailing(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField()
     photo = models.TextField(verbose_name='photo_id', null=True)
-    checkbox = models.TextField()
+    # checkbox = models.TextField()
 
     class Meta:
         verbose_name = "Рассылка"
