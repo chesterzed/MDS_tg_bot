@@ -98,7 +98,7 @@ def delete_channel(username):
         client.disconnect()
 
 
-def create_chat(title, users, id):
+def create_chat(title, users):
     """Создание чата"""
     try:
         client = _get_client()
@@ -110,7 +110,7 @@ def create_chat(title, users, id):
         ).chats[0].id
         link = client(ExportChatInviteRequest(id_chat)).link
 
-        chat = Chat.objects.get(id=id)
+        chat = Chat()
         chat.link = link
         chat.tg_id = id_chat
         chat.save()
@@ -119,8 +119,10 @@ def create_chat(title, users, id):
 
         for el in users:
             try:
+                print(el)
                 user = User_tg.objects.get(phone=el)
-                user.chat = id
+                print(user.tg_id)
+                user.chat = chat.tg_id
                 user.save()
                 client.send_message(
                     'mdstest_bot',

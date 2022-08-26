@@ -212,7 +212,7 @@ def create_chat_view(req):
         chat.save()
 
         users = data['username'].replace("@", '').replace(' ', '').split(',')
-        create_chat(title=chat.name, users=users, id=chat.id)
+        create_chat(title=chat.name, users=users)
         return redirect('main', 'chats')
 
     return render(req, 'work/createchat.html')
