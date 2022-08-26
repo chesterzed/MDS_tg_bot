@@ -157,6 +157,7 @@
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
 			console.log(e.value)
+			console.log(e.value == 'true')
 			if (e.value == true) {
 				our.push(e.value)
 			}
