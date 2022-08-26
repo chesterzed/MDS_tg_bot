@@ -120,7 +120,7 @@ def create_chat(title, users):
         for el in users:
             try:
                 print(el)
-                user = User_tg.objects.get(phone=el)
+                user = User_tg.objects.get(phone=str(el).replace('+', ''))
                 print(user.tg_id)
                 # user.chat = chat.tg_id
                 user.save()
