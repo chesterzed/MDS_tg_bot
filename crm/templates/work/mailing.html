@@ -88,7 +88,8 @@
 
 
 													{% csrf_token %}
-													<select name="manage" style="border: 0;  float: right; transform: scale(1.2); ">
+													<select name="manage" id="{{user.phone}}"
+														style="border: 0;  float: right; transform: scale(1.2); ">
 														<option value="true">Да</option>
 														<option value="false" selected>Нет</option>
 													</select>
