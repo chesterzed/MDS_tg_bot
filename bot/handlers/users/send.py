@@ -1,17 +1,21 @@
 from aiogram import types
+import aiogram
 
 from loader import dp, bot
 
 
-@dp.message_handler(commands=['send'], state='*')
+@dp.message_handler(commands=['send'], state='*', commands_ignore_caption=False, content_types=types.ContentType.ANY)
 async def bot_start(message: types.Message):
     """Рассылка приглашений в гильдии, чаты"""
     try:
+        print(message)
         if message.photo:
             print("aaa")
             param = message.caption.split(' ')
+            print(param)
             ph = message.photo[-1].file_id
-            await bot.send_photo(
+            print(ph)
+            await bot.send_photo(  # does not work
                 chat_id=param[1],
                 photo=ph,
                 caption=f'{message.text.replace(param[1], "").replace(param[0], "")}'
@@ -19,6 +23,5 @@ async def bot_start(message: types.Message):
         else:
             param = message.text.split(' ')
             await bot.send_message(param[1], f'{message.text.replace(param[1], "").replace(param[0], "")}')
-
     except:
         pass
