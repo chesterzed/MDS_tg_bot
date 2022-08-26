@@ -30,8 +30,9 @@ def create_channel(namechannel, descrchannel, linkchannel, id):
             return True
         
         else:
+            client.disconnect()
             return False
-        client.disconnect()
+
     except:
         client.disconnect()
 
@@ -148,9 +149,9 @@ def _get_client():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-    api_id=17780534
-    api_hash='96fd2fa9cca58b34eafb5bd51ba342b2'
-    name='TeleSender'
+    api_id = 12278609
+    api_hash = '35a1e01383db6f82ff373ca0c9473d2d'
+    name = 'mds_test551123'
 
     client = TelegramClient(name, api_id, api_hash, loop=loop)
     client.start()

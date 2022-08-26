@@ -187,7 +187,7 @@ def channel_view(req, id):
 
         if 'delete' in data:
             channel.delete()
-            # delete_channel(channel.link)
+            delete_channel(channel.link)
             return redirect('main', 'channels')
         else:
             channel.name = data['name']
@@ -196,7 +196,7 @@ def channel_view(req, id):
             if 'add_admin' in data and data['add_admin']:
                 add_admin(channel.tg_id, int(data['add_admin']))
 
-            # change_channel(data['name'], channel.link)
+            change_channel(data['name'], channel.link)
             return render(req, 'work/channel.html', {'channel': channel})
     
     else:
@@ -212,7 +212,7 @@ def create_chat_view(req):
         chat.save()
 
         users = data['username'].replace("@", '').replace(' ', '').split(',')
-        # create_chat(title=chat.name, users=users, id=chat.id)
+        create_chat(title=chat.name, users=users, id=chat.id)
         return redirect('main', 'chats')
 
     return render(req, 'work/createchat.html')
@@ -241,13 +241,13 @@ def task_connect(req, id):
             text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
         try:
             if 'delete' in data:
-                # send_message(user.tg_id, text_alone)
+                send_message(user.tg_id, text_alone)
                 pass
             elif 'connect' in data:
                 if photo:
                     user.photo = photo
                     user.save()
-                # send_message(user.tg_id, text_success)
+                send_message(user.tg_id, text_success)
         except:
             pass
         task.delete()
