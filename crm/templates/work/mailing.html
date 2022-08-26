@@ -81,8 +81,10 @@
 										<div class="el" id="{{user.phone}}">
 											<div class="templateCard">
 												<div class="card-body">
-													{{user.phone}}
 
+													<span>
+														{{user.phone}}
+													</span>
 
 
 
@@ -153,13 +155,16 @@
 
 
 
+
+
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
 
 			if (e.value == 'true') {
+
 				our.push(e.value)
-				console.log(e.value)
+				console.log(e.parentElement.querySelector('span').innerHTML)
 				console.log(e.value == 'true')
 			}
 			else {
@@ -170,6 +175,8 @@
 			console.log(our)
 		})
 	})
+
+
 
 
 
