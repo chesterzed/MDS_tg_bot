@@ -153,11 +153,19 @@
 
 
 
-	document.querySelectorAll('[ name = "manage"]').forEach((e) => {
-
-		console.log(e.value)
-
-
+	let our = []
+	document.querySelectorAll('[name="manage"]').forEach((e) => {
+		e.addEventListener('change', (ev) => {
+			if (e.value == true) {
+				our.push(e.value)
+			}
+			else {
+				if (our.indexOf(e.value) != -1) {
+					our.splice(our.indexOf(e.value), 1);
+				}
+			}
+			console.log(our)
+		})
 	})
 
 
