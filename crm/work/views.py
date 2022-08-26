@@ -353,7 +353,7 @@ def add_mailing(req, id=None):
         for phone in data['our'].split():
             print(phone)
             try:
-                user = User.objects.get(phone=phone)
+                user = User_tg.objects.get(phone=phone)
                 send_message(user.tg_id, data['desc'])
             except:
                 pass
