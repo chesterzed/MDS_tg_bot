@@ -46,6 +46,32 @@
 						</td>
 
 
+
+
+
+
+
+
+						<form method="post" action="checkbox">
+							{% csrf_token %}
+
+
+							<div class="checkbox">
+								<input type="checkbox" id="click" name="data2" value="1"
+									style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
+							</div>
+
+
+						</form>
+
+
+
+
+
+
+
+
+
 					</tr>
 				</tbody>
 
@@ -82,17 +108,9 @@
 
 
 
-							<form method="post" action="checkbox">
-								{% csrf_token %}
 
 
-								<div class="checkbox">
-									<input type="checkbox" id="click" name="data2" value="1"
-										style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
-								</div>
 
-
-							</form>
 
 
 
