@@ -15,7 +15,7 @@ class Channel(models.Model):
 
 class Chat(models.Model):
     """Модель гильдий"""
-    tg_id = models.CharField(verbose_name='tg_id', max_length=50) 
+    tg_id = models.CharField(verbose_name='tg_id', max_length=50)
     name = models.CharField(verbose_name='Название чата', max_length=50)
     link = models.CharField(verbose_name='link', max_length=50)
 
@@ -37,8 +37,7 @@ class User_tg(models.Model):
     # Данные из админки
     # Категория 1
     city = models.CharField(verbose_name='city', max_length=100)
-    
-    
+
     about_1 = models.TextField(verbose_name='about_1')
 
     # Категория 2
@@ -50,7 +49,7 @@ class User_tg(models.Model):
     # Категория 4
     about_4 = models.TextField(verbose_name='about_4')
 
-
+    set = models.DateField(verbose_name="set")
 
     # Чаты
     chat = models.CharField(verbose_name='chat', max_length=50)
@@ -89,7 +88,6 @@ class Mailing(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField()
     photo = models.TextField(verbose_name='photo_id', null=True)
-    
 
     class Meta:
         verbose_name = "Рассылка"
