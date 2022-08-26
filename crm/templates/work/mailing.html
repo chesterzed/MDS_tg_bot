@@ -124,6 +124,11 @@
 		{% if mailing %}
 		<button class="button" name="delete" type="submit">Удалить</button>
 		{% endif %}
+
+
+
+		<input type="text" style="display:none" name="our" id="ourInput">
+
 	</form>
 
 </div>
@@ -153,12 +158,13 @@
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
-
 			if (e.value == 'true') {
-
 				our.push(e.parentElement.querySelector('span').innerHTML)
 				console.log()
 				console.log(e.value == 'true')
+				our.forEach((ourEl) => {
+					document.querySelector('#ourInput').value += (ourEl + ' ')
+				})
 			}
 			else {
 				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
@@ -166,6 +172,7 @@
 				}
 			}
 			console.log(our)
+			console.log(document.querySelector('#ourInput').value)
 		})
 	})
 
