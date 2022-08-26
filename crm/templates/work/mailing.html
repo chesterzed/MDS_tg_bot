@@ -76,6 +76,12 @@
 															">
 											<div id="count" style="font-size: 10pt; color: #0e1f4d; display: block; width: 25%;">
 											</div>
+
+											<select name="manage" id="{{user.phone}}"
+												style="border: 0;  float: right; transform: scale(1.2); ">
+												<option value="true">Да</option>
+												<option value="false" selected>Нет</option>
+											</select>
 										</div>
 										{% for user in users %}
 										<div class="el" id="{{user.phone}}">
@@ -141,29 +147,43 @@
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
+			let str = ''
 			if (e.value == 'true') {
 				our.push(e.parentElement.querySelector('span').innerHTML)
-				console.log()
-				console.log(e.value == 'true')
-				our.forEach((ourEl) => {
-					document.querySelector('#ourInput').value += (ourEl + ' ')
-					console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
-					document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
-						if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
-							document.querySelector('#ourInput').value = elf
-							console.log(elf)
-						}
-						else {
-							elf.splice(elf.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
-						}
-					})
 
+				str = ''
+				our.forEach((e) => {
+					str += (e + ' ')
 				})
+				document.querySelector('#ourInput').value = str
+				// console.log()
+				// console.log(e.value == 'true')
+				// our.forEach((ourEl) => {
+				// 	document.querySelector('#ourInput').value += (ourEl + ' ')
+				// 	console.log('ХуЕтА ГоЛиМаЯ!!!:' + document.querySelector('#ourInput').value.split(' '))
+				// 	document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
+				// 		if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
+				// 			document.querySelector('#ourInput').value += ourEl
+				//             console.log(elf)
+				// 		}
+				//         else{
+				// 			our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
+				//         }
+				// 	})
+				// })
+
 			}
 			else {
+
 				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
 					our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1);
 				}
+				str = ''
+				our.forEach((e) => {
+					str += (e + ' ')
+				})
+				document.querySelector('#ourInput').value = str
+
 			}
 			console.log(our)
 			console.log(document.querySelector('#ourInput').value)
