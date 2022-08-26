@@ -351,6 +351,7 @@ def add_mailing(req, id=None):
 
         # send messages to the people
         for phone in data['our'].split():
+            print(phone)
             try:
                 user = User.objects.get(phone=phone)
                 send_message(user.tg_id, data['desc'])
