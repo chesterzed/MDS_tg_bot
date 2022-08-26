@@ -53,16 +53,20 @@
 										<div class="col">
 
 
-											<div style="border: 0;  float: right; transform: scale(1.2);     display: flex;
-											
+
+											<div style="border: 0; transform: scale(1.2);     display: flex;
+											    padding-right: 18px;
 											align-items: center;
 											">
-												<p>Выбрать всех</p>
-												<select name="manageAll" id="{{user.phone}}">
+												<button class="button" id="all" type="button">Выбрать всех</button>
+												<!-- <p>Выбрать всех</p>
+												<select name="manageAll" id="{{user.phone}}" style="border: 0;
+												transform: scale(1.2);">
+
 													<p>Выбрать всех</p>
 													<option value="true">Да</option>
 													<option value="false" selected>Нет</option>
-												</select>
+												</select> -->
 											</div>
 
 											<input id="searchForm" class="form-control searchInpt" type="text"
@@ -201,7 +205,11 @@
 		})
 	})
 
-
+	document.querySelector('#all').addEventListener('click', ((ev) => {
+		document.querySelectorAll('[name="manage"]').forEach((e) => {
+			e.value = true
+		})
+	}))
 
 
 
