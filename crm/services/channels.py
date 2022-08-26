@@ -104,7 +104,7 @@ def create_chat(title, users, id):
         client = _get_client()
         id_chat = client(
             CreateChatRequest(
-                users=['Test_py_dnk_bot'],
+                users=['mdstest_bot'],
                 title=title
             )
         ).chats[0].id
@@ -114,10 +114,12 @@ def create_chat(title, users, id):
         chat.link = link
         chat.tg_id = id_chat
         chat.save()
-        
+
+        print(users)
+
         for el in users:
             try:
-                user = User_tg.objects.get(phone = el)
+                user = User_tg.objects.get(phone=el)
                 user.chat = id
                 user.save()
                 client.send_message(
