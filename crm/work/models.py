@@ -49,8 +49,6 @@ class User_tg(models.Model):
     # Категория 4
     about_4 = models.TextField(verbose_name='about_4')
 
-    set = models.DateField(verbose_name="set")
-
     # Чаты
     chat = models.CharField(verbose_name='chat', max_length=50)
 
