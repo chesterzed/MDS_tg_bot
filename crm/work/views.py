@@ -335,7 +335,16 @@ def add_mailing(req, id=None):
             # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
 
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-            mailing.manage = mailing.phone if data['manage'] == 'true' else False
+          
+          
+          
+          
+            mailing.manage = True if data['manage'] == 'true' else False
+          
+          
+          
+          
+          
             mailing.save()
             data = {
                 'mailing': Mailing.objects.get(id=id)
