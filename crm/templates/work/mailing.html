@@ -60,12 +60,16 @@
 
 
 
-													<form method="post">
+													<form method="post" name="checkbox">
 														{% csrf_token %}
-														<select name="manage">
-															<option value="true">Да</option>
-															<option value="false" selected="">Нет</option>
+														<select name="manage" style="border: 0; background-color: #FFFFFF; float: right; transform:
+														scale(1.2); margin-top: -30px;">
+															<option value="true" selected="">Да</option>
+															<option value="false">Нет</option>
 														</select>
+
+
+
 													</form>
 
 
