@@ -314,35 +314,20 @@ def add_mailing(req, id=None):
     if req.method == 'POST':
         data = req.POST.dict()
         print(str(data) + "test")
-        print(str(req) + "test1")
-
-        for r in req.POST.dict():
-            print(str(r) + "t")
-
-        for r in req.POST:
-            print(str(r) + "t1")
-
-        for r in req.method:
-            print(str(r) + "t2")
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
             return redirect('mailing')
         if id:
+            print("max hui")
             mailing = Mailing.objects.get(id=id)
             mailing.name = data['name'] if 'name' in data else mailing.name
             # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
 
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-        
-        
-        
-        
+
             mailing.manage = True if data['manage'] == 'true' else False
-            
-        
-        
         
             mailing.save()
             data = {
@@ -363,21 +348,5 @@ def add_mailing(req, id=None):
 
         mailing.save()
         return redirect('mailing', mailing.id, )
-
-    data = {}
-    if id:
-        data = {
-            'mailing': Mailing.objects.get(id=id)
-        }
-
-        # usersuccess = []
-        # for mg in users:
-        #     usersuccess.append(mg.phone)
-        #     if mg.phone!=mailing.phone:
-        #         mailing.save()
-        #         usersuccess.append(mailing.phone)
-        #         return redirect('user', mailing.id)
-        #     else:
-        #         return redirect('login')
 
     return render(req, 'work/mailing.html', {'users': users})
