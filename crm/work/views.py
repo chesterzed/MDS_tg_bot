@@ -344,7 +344,7 @@ def add_mailing(req, id=None):
         file = req.FILES['photo']
         file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
 
-        mailing.photo = f'../crm/media/{file_name}'
+        mailing.photo = f'./crm/media/{file_name}'
         # mailing.photo = f'../crm/media/{mailing.id}.{str(file.name).split(".")[-1]}'
 
         mailing.save()
