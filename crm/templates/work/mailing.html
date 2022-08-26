@@ -141,11 +141,12 @@
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
+            let str = ''
 			if (e.value == 'true') {
 				our.push(e.parentElement.querySelector('span').innerHTML)
-                let str = ''
+                str = ''
                 our.forEach((e)=>{
-                    str += e
+                    str += (e + ' ')
                 })
                 document.querySelector('#ourInput').value = str
 				// console.log()
@@ -165,9 +166,14 @@
 				// })
 			}
 			else {
+                
 				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
 					our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1);
 				}
+                str = ''
+                our.forEach((e)=>{
+                    str += (e + ' ')
+                })
 			}
 			console.log(our)
 			console.log(document.querySelector('#ourInput').value)
