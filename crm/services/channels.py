@@ -136,11 +136,14 @@ def create_chat(title, users, id):
 
 
 def send_message(user, message):
+    print("smth")
     client = _get_client()
+    print("smth1")
     client.send_message(
                     'Test_py_dnk_bot',
                     f'/send {user} {message}'
                 )
+    print("smth2")
 
     client.disconnect()
 
