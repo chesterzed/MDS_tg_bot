@@ -52,6 +52,8 @@ class User_tg(models.Model):
     # Чаты
     chat = models.CharField(verbose_name='chat', max_length=50)
 
+    last_in = models.DateTimeField()
+
     class Meta:
         db_table = 'work_users'
         verbose_name = 'Пользователь тг'
@@ -86,6 +88,7 @@ class Mailing(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField()
     photo = models.TextField(verbose_name='photo_id', null=True)
+    numbers = models.TextField()
 
     class Meta:
         verbose_name = "Рассылка"
