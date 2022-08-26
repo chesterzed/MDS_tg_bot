@@ -74,9 +74,16 @@
 															var schet = document.getElementById('count');
 															schet.innerHTML = 'Показано ' + viewCount.toString() + ' из ' + count.toString();
 															">
-											<div id="count" style="font-size: 10pt; color: #0e1f4d; display: block; width: 25%;">
-											</div>
+
+
+
 										</div>
+
+										<div class="col"><select name="manage" id="{{user.phone}}"
+												style="border: 0;  float: right; transform: scale(1.2); ">
+												<option value="true">Да</option>
+												<option value="false" selected>Нет</option>
+											</select></div>
 										{% for user in users %}
 										<div class="el" id="{{user.phone}}">
 											<div class="templateCard">
@@ -141,14 +148,15 @@
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
-            let str = ''
+			let str = ''
 			if (e.value == 'true') {
 				our.push(e.parentElement.querySelector('span').innerHTML)
-                str = ''
-                our.forEach((e)=>{
-                    str += (e + ' ')
-                })
-                document.querySelector('#ourInput').value = str
+
+				str = ''
+				our.forEach((e) => {
+					str += (e + ' ')
+				})
+				document.querySelector('#ourInput').value = str
 				// console.log()
 				// console.log(e.value == 'true')
 				// our.forEach((ourEl) => {
@@ -157,24 +165,25 @@
 				// 	document.querySelector('#ourInput').value.split(' ').forEach((elf) => {
 				// 		if (elf.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
 				// 			document.querySelector('#ourInput').value += ourEl
-                //             console.log(elf)
+				//             console.log(elf)
 				// 		}
-                //         else{
+				//         else{
 				// 			our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1)
-                //         }
+				//         }
 				// 	})
 				// })
+
 			}
 			else {
-                
+
 				if (our.indexOf(e.parentElement.querySelector('span').innerHTML) != -1) {
 					our.splice(our.indexOf(e.parentElement.querySelector('span').innerHTML), 1);
 				}
-                str = ''
-                our.forEach((e)=>{
-                    str += (e + ' ')
-                })
-                document.querySelector('#ourInput').value = str
+				str = ''
+				our.forEach((e) => {
+					str += (e + ' ')
+				})
+				document.querySelector('#ourInput').value = str
 
 			}
 			console.log(our)
