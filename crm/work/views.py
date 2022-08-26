@@ -320,7 +320,7 @@ def add_mailing(req, id=None):
             mailing.delete()
             return redirect('mailing')
         # if id:
-        #     print("dva uybicha!!!!!!!!!!!")
+        #     print("FFFFF")
         #     mailing = Mailing.objects.get(id=id)
         #     mailing.name = data['name'] if 'name' in data else mailing.name
         #     # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
@@ -338,14 +338,12 @@ def add_mailing(req, id=None):
 
         mailing = Mailing()
         mailing.name = data['name']
-        # mailing.type_mailing = data['type_mailing']
         mailing.desc = data['desc']
 
         file = req.FILES['photo']
         file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
 
         mailing.photo = f'./crm/media/{file_name}'
-        # mailing.photo = f'../crm/media/{mailing.id}.{str(file.name).split(".")[-1]}'
 
         mailing.save()
 
