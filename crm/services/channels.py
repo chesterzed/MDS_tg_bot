@@ -151,7 +151,7 @@ def _get_client():
 
     api_id = 12278609
     api_hash = '35a1e01383db6f82ff373ca0c9473d2d'
-    name = 'mds_test551123'
+    name = 'testtttt1t21t12t21tsete1'
 
     client = TelegramClient(name, api_id, api_hash, loop=loop)
     client.start()
