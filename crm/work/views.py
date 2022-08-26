@@ -319,22 +319,22 @@ def add_mailing(req, id=None):
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
             return redirect('mailing')
-        if id:
-            print("max hui")
-            mailing = Mailing.objects.get(id=id)
-            mailing.name = data['name'] if 'name' in data else mailing.name
-            # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
-
-            mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-
-            # mailing.manage = True if data['manage'] == 'true' else False
-        
-            mailing.save()
-            data = {
-                'mailing': Mailing.objects.get(id=id)
-            }
-
-            return render(req, 'work/mailing.html', data)
+        # if id:
+        #     print("max hui")
+        #     mailing = Mailing.objects.get(id=id)
+        #     mailing.name = data['name'] if 'name' in data else mailing.name
+        #     # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
+        #
+        #     mailing.desc = data['desc'] if 'desc' in data else mailing.desc
+        #
+        #     # mailing.manage = True if data['manage'] == 'true' else False
+        #
+        #     mailing.save()
+        #     data = {
+        #         'mailing': Mailing.objects.get(id=id)
+        #     }
+        #
+        #     return render(req, 'work/mailing.html', data)
 
         mailing = Mailing()
         mailing.name = data['name']
