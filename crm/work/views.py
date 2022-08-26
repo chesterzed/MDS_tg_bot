@@ -219,7 +219,7 @@ def create_chat_view(req):
 
 
 def delete_chat(req, id=None):
-    chat = Chat.objects.get(id = id)
+    chat = Chat.objects.get(id=id)
     chat.delete()
     return redirect('main', 'chats')
 

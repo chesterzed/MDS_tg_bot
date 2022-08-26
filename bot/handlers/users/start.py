@@ -14,7 +14,7 @@ from keyboards.default import reg_kb, main_kb
 async def bot_start(message: types.Message, state: FSMContext):
     await state.finish()
     try:
-        user = User.get(User.tg_id == message.from_user.id)
+        # user = User.get(User.tg_id == message.from_user.id)
         await message.answer(f"Привет, {message.from_user.full_name}!", reply_markup=main_kb)
         
     except Exception as e:
@@ -24,7 +24,7 @@ async def bot_start(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='main_menu', state='*')
 async def main_menu(c: types.CallbackQuery, state: FSMContext):
-    user = User.get(User.tg_id == c.from_user.id)
+    # user = User.get(User.tg_id == c.from_user.id)
     await c.message.answer("Главное меню", reply_markup=main_kb)
     await state.finish()
 
