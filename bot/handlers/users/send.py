@@ -3,7 +3,7 @@ from aiogram import types
 from loader import dp, bot
 
 
-@dp.message_handler(commands=['send'], state='*', commands_ignore_caption=False)
+@dp.message_handler(commands=['send'], state='*', ignore_caption=False)
 async def bot_start(message: types.Message):
     """Рассылка приглашений в гильдии, чаты"""
     try:
