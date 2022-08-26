@@ -9,11 +9,12 @@ async def bot_start(message: types.Message):
     """Рассылка приглашений в гильдии, чаты"""
     try:
         print(message)
-        if message.caption:
+        if message.photo:
             print("aaa")
             param = message.caption.split(' ')
             print(param)
             ph = message.photo[-1].file_id
+            print(ph)
             await bot.send_photo(
                 chat_id=param[1],
                 photo=ph,
