@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import sender
+import checker
 
 
 def main():
@@ -21,4 +21,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    sender.shit()
+    checker.user_leave_checker()
