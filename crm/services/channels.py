@@ -121,7 +121,7 @@ def create_chat(title, users, id):
                 user.chat = id
                 user.save()
                 client.send_message(
-                    'Test_py_dnk_bot',
+                    'mdstest_bot',
                     f'/send {user.tg_id} У нас открыся чат, приглашаем вступить \n{link}'
                 )
 
@@ -136,36 +136,26 @@ def create_chat(title, users, id):
 
 
 def send_message(user, message):
-    print("smth")
     client = _get_client()
-    print("smth1")
     client.send_message(
                     'mdstest_bot',
                     f'/send {user} {message}'
                 )
-    print("smth2")
 
     client.disconnect()
 
 
 def _get_client():
-    print("smth")
     loop = asyncio.new_event_loop()
-    print("smth1")
     asyncio.set_event_loop(loop)
 
     api_id = 12278609
     api_hash = '35a1e01383db6f82ff373ca0c9473d2d'
     name = 'testtttt1t21t12t21tsete1'
 
-    print("smth2")
-
     client = TelegramClient(name, api_id, api_hash, loop=loop)
 
-    print("smth3")
     client.start()
-    print("smth4")
     client.connect()
-    print("smth5")
 
     return client
