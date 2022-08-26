@@ -12,6 +12,7 @@ async def bot_start(message: types.Message):
         if message.caption:
             print("aaa")
             param = message.caption.split(' ')
+            print(param)
             ph = message.photo[-1].file_id
             await bot.send_photo(
                 chat_id=param[1],
@@ -21,6 +22,5 @@ async def bot_start(message: types.Message):
         else:
             param = message.text.split(' ')
             await bot.send_message(param[1], f'{message.text.replace(param[1], "").replace(param[0], "")}')
-
     except:
         pass
