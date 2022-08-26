@@ -90,8 +90,8 @@
 													{% csrf_token %}
 													<select name="manage" id="{{user.phone}}"
 														style="border: 0;  float: right; transform: scale(1.2); ">
-														<option value="true" id="{{user.phone}}">Да</option>
-														<option value="false" selected id="{{user.phone}}">Нет</option>
+														<option value="true">Да</option>
+														<option value="false" selected>Нет</option>
 													</select>
 
 
@@ -149,8 +149,20 @@
 			document.querySelector('#openModal').style.cssText = "opacity: 0;  display: none;";
 		});
 	});
-</script>
-<script>
+
+
+
+
+	document.querySelectorAll('[ name = "manage"]').forEach((e) => {
+
+		console.log(e)
+
+
+	})
+
+
+
+
 	$("input[name='data']").mask('99.99.9999 99:99');
 </script>
 
