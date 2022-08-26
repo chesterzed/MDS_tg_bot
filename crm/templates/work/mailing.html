@@ -51,6 +51,17 @@
 									</div>
 									<div class="modal-body">
 										<div class="col">
+
+
+											<div style="border: 0;  float: right; transform: scale(1.2); ">
+												<p>Выбрать всех</p>
+												<select name="manageAll" id="{{user.phone}}">
+													<p>Выбрать всех</p>
+													<option value="true">Да</option>
+													<option value="false" selected>Нет</option>
+												</select>
+											</div>
+
 											<input id="searchForm" class="form-control searchInpt" type="text"
 												placeholder="Поиск..." onkeyup="
 															var filter = document.getElementById('searchForm').value.toLowerCase();
@@ -79,11 +90,6 @@
 
 										</div>
 
-										<div class="col"><select name="manage" id="{{user.phone}}"
-												style="border: 0;  float: right; transform: scale(1.2); ">
-												<option value="true">Да</option>
-												<option value="false" selected>Нет</option>
-											</select></div>
 										{% for user in users %}
 										<div class="el" id="{{user.phone}}">
 											<div class="templateCard">

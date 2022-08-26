@@ -320,7 +320,7 @@ def add_mailing(req, id=None):
             mailing.delete()
             return redirect('mailing')
         # if id:
-        #     print("max hui")
+        #     print("dva uybicha!!!!!!!!!!!")
         #     mailing = Mailing.objects.get(id=id)
         #     mailing.name = data['name'] if 'name' in data else mailing.name
         #     # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
