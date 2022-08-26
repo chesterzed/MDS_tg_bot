@@ -41,9 +41,32 @@
 						<td>Добавите пользоватля/ей</td>
 						<td>
 							<a class="buttonM" href="#openModal">Добавить</a>
-
-
 						</td>
+						<div id="openModal" class="modal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3 class="modal-title">Название</h3>
+										<a href="#close" title="Close" class="close">×</a>
+									</div>
+									<div class="modal-body">
+
+										{% for user in users %}
+										<div class="el" id="{{user.phone}}">
+											<div class="templateCard">
+												<div class="card-body">
+													{{user.phone}}
+
+
+
+
+													<form method="post" action="checkbox">
+														{% csrf_token %}
+														<div class="checkbox">
+															<input type="checkbox" id="click" name="data2" value="1"
+																style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
+														</div>
+													</form>
 
 
 
@@ -51,22 +74,14 @@
 
 
 
-
-						<form method="post" action="checkbox">
-							{% csrf_token %}
-
-
-							<div class="checkbox">
-								<input type="checkbox" id="click" name="data2" value="1"
-									style="border: 0; background-color: #FFFFFF; float: right; transform: scale(1.2); margin-top: -30px;">
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+								</div>
 							</div>
-
-
-						</form>
-
-
-
-
+						</div>
 
 
 
@@ -91,37 +106,7 @@
 </div>
 
 
-<div id="openModal" class="modal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3 class="modal-title">Название</h3>
-				<a href="#close" title="Close" class="close">×</a>
-			</div>
-			<div class="modal-body">
 
-				{% for user in users %}
-				<div class="el" id="{{user.phone}}">
-					<div class="templateCard">
-						<div class="card-body">
-							{{user.phone}}
-
-
-
-
-
-
-
-
-
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</div>
 </div>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
