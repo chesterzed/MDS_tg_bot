@@ -140,7 +140,7 @@ def send_message(user, message):
     client = _get_client()
     print("smth1")
     client.send_message(
-                    'Test_py_dnk_bot',
+                    'mdstest_bot',
                     f'/send {user} {message}'
                 )
     print("smth2")
