@@ -327,7 +327,7 @@ def add_mailing(req, id=None):
 
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
 
-            mailing.manage = True if data['manage'] == 'true' else False
+            # mailing.manage = True if data['manage'] == 'true' else False
         
             mailing.save()
             data = {
@@ -348,6 +348,15 @@ def add_mailing(req, id=None):
         # mailing.photo = f'../crm/media/{mailing.id}.{str(file.name).split(".")[-1]}'
 
         mailing.save()
+
+        # send messages to the people
+        for phone in data['our'].split():
+            try:
+                user = User.objects.get(phone=phone)
+                send_message(user.tg_id, data['desc'])
+            except:
+                pass
+
         return redirect('mailing', mailing.id)
 
     return render(req, 'work/mailing.html', {'users': users})

@@ -15,7 +15,7 @@ async def bot_start(message: types.Message):
             print(param)
             ph = message.photo[-1].file_id
             print(ph)
-            await bot.send_photo(
+            await bot.send_photo(  # does not work
                 chat_id=param[1],
                 photo=ph,
                 caption=f'{message.text.replace(param[1], "").replace(param[0], "")}'
