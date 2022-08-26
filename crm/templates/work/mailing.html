@@ -53,14 +53,16 @@
 										<div class="col">
 
 
+
 											<div style="border: 0; transform: scale(1.2);     display: flex;
 											    padding-right: 18px;
 											align-items: center;
 											">
-                                                <button class="button" id="all" type="button">Выбрать всех</button>
+												<button class="button" id="all" type="button">Выбрать всех</button>
 												<!-- <p>Выбрать всех</p>
 												<select name="manageAll" id="{{user.phone}}" style="border: 0;
 												transform: scale(1.2);">
+
 													<p>Выбрать всех</p>
 													<option value="true">Да</option>
 													<option value="false" selected>Нет</option>
@@ -203,18 +205,12 @@
 		})
 	})
 
-    document.querySelector('#all').addEventListener('click', ((ev)=>{
-        document.querySelectorAll('[name="manage"]').forEach((e) =>{
-            e.value = true
-            our.push(e.parentElement.querySelector('span').innerHTML)
+	document.querySelector('#all').addEventListener('click', ((ev) => {
+		document.querySelectorAll('[name="manage"]').forEach((e) => {
+			e.value = true
+		})
+	}))
 
-				str = ''
-				our.forEach((e) => {
-					str += (e + ' ')
-				})
-				document.querySelector('#ourInput').value = str
-        })
-    }))
 
 
 
