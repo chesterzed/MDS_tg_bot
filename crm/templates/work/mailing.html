@@ -156,6 +156,7 @@
 	let our = []
 	document.querySelectorAll('[name="manage"]').forEach((e) => {
 		e.addEventListener('change', (ev) => {
+			console.log(e.value)
 			if (e.value == true) {
 				our.push(e.value)
 			}
