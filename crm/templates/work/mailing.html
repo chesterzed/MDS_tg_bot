@@ -74,16 +74,16 @@
 															var schet = document.getElementById('count');
 															schet.innerHTML = 'Показано ' + viewCount.toString() + ' из ' + count.toString();
 															">
-											<div id="count" style="font-size: 10pt; color: #0e1f4d; display: block; width: 25%;">
-												<select name="manage" id="{{user.phone}}"
-													style="border: 0;  float: right; transform: scale(1.2); ">
-													<option value="true">Да</option>
-													<option value="false" selected>Нет</option>
-												</select>
-											</div>
+
 
 
 										</div>
+
+										<div class="col"><select name="manage" id="{{user.phone}}"
+												style="border: 0;  float: right; transform: scale(1.2); ">
+												<option value="true">Да</option>
+												<option value="false" selected>Нет</option>
+											</select></div>
 										{% for user in users %}
 										<div class="el" id="{{user.phone}}">
 											<div class="templateCard">
