@@ -1,9 +1,11 @@
+import os
 import time
 from work.models import User_tg, TaskConnect
 from datetime import date
 
 
 def user_leave_checker():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm.settings')
     print("start checking...")
     while True:
         users = User_tg.objects.all()
