@@ -19,5 +19,3 @@ def user_leave_checker():
 
 
         time.sleep(86400)                   #  Ожидание 24 часа
-
-
