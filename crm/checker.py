@@ -13,6 +13,3 @@ def user_leave_checker():
             dat = us.last_in
             print(dat)
         time.sleep(86400)
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm.settings')
