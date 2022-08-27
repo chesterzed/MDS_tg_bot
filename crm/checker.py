@@ -5,7 +5,6 @@ from datetime import date
 
 
 def user_leave_checker():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm.settings')
     print("start checking...")
     while True:
         users = User_tg.objects.all()
@@ -14,3 +13,6 @@ def user_leave_checker():
             dat = us.last_in
             print(dat)
         time.sleep(86400)
+
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm.settings')
