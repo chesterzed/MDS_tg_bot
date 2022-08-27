@@ -1,6 +1,6 @@
 import os
 import time
-from .models import User_tg, TaskConnect
+from models import User_tg, TaskConnect
 from datetime import date
 
 
