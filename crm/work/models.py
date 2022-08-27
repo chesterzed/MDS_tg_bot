@@ -52,7 +52,7 @@ class User_tg(models.Model):
     # Чаты
     chat = models.CharField(verbose_name='chat', max_length=50)
 
-    last_in = models.DateTimeField()
+    last_in = models.DateField()
 
     class Meta:
         db_table = 'work_users'
