@@ -21,6 +21,7 @@ async def on_startup(dispatcher):
 async def on_startup_h(dp):
     await bot.set_webhook(h.WEBHOOK_URL_BASE)
     # insert code here to run it after start
+    await executor.start_polling(dp, on_startup=on_startup)
 
 
 async def on_shutdown_h(dp):
@@ -75,7 +76,7 @@ if __name__ == '__main__':
         port=h.WEBHOOK_PORT
     )
 
-    executor.start_polling(dp, on_startup=on_startup)
+    # executor.start_polling(dp, on_startup=on_startup)
 
     while True:
         db.close()
