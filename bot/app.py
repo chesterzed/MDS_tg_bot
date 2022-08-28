@@ -19,7 +19,7 @@ async def on_startup(dispatcher):
     await on_startup_notify(dispatcher)
 
 async def on_startup_h(dp):
-    await bot.set_webhook(h.WEBHOOK_URL_BASE)
+    await bot.set_webhook("109.68.213.180:1000")
     # insert code here to run it after start
 
 
