@@ -55,7 +55,16 @@ if __name__ == '__main__':
     # # Собственно, запуск!
     # cherrypy.quickstart(h.WebhookServer(), h.WEBHOOK_URL_PATH, {'/': {}})
 
-    executor.set_webhook(
+    # executor.set_webhook(
+    #     dispatcher=dp,
+    #     webhook_path=h.WEBHOOK_URL_PATH,
+    #     skip_updates=True,
+    #     on_startup=on_startup_h,
+    #     on_shutdown=on_shutdown_h,
+    #     check_ip=False,
+    # )
+
+    executor.start_webhook(
         dispatcher=dp,
         webhook_path=h.WEBHOOK_URL_PATH,
         skip_updates=True,
@@ -63,8 +72,6 @@ if __name__ == '__main__':
         on_shutdown=on_shutdown_h,
         check_ip=False,
     )
-
-    executor.start_webhook()
 
     executor.start_polling(dp, on_startup=on_startup)
 
