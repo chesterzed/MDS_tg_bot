@@ -1,5 +1,4 @@
-from getpass import getpass
-from mysql.connector import connect, Error
+from mysql.connector import connect
 import time
 from datetime import date
 
