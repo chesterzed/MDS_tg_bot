@@ -1,7 +1,6 @@
 from aiogram import executor
 
 import hook as h
-import cherrypy
 import logging
 
 from loader import dp, bot
