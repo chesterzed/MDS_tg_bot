@@ -56,7 +56,7 @@ def user_leave_checker():
             days_passed = 0
 
         if days_passed >= 3:
-            insert_to_tasks(connection1, row[1], 0, "Бро, человек то с гнильцой оказался", 0)
+            insert_to_tasks(connection1, row[1], 0, "Бро, человек то с гнильцой оказался", '')
 
     connection1.commit()
 
