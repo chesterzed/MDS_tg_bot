@@ -48,7 +48,7 @@ def user_leave_checker():
     users = get_table(connection1, "work_users")
     today = date_to_float(date.today())  # how many day user left
     for row in users:
-        print(row)
+        print(row[1])
         if date_to_float(row[12]):
             days_passed = (today - date_to_float(row[12])) / 86400  # 86400 - 1 day in seconds
             print(days_passed)
