@@ -1,4 +1,4 @@
-import cherrypy
+# import cherrypy
 from aiogram.types import Update
 
 from data.config import BOT_TOKEN
@@ -16,17 +16,17 @@ WEBHOOK_URL_PATH = "/%s/" % BOT_TOKEN
 
 
 # Наш вебхук-сервер
-class WebhookServer(object):
-    @cherrypy.expose
-    def index(self):
-        if 'content-length' in cherrypy.request.headers and \
-                        'content-type' in cherrypy.request.headers and \
-                        cherrypy.request.headers['content-type'] == 'application/json':
-            length = int(cherrypy.request.headers['content-length'])
-            json_string = cherrypy.request.body.read(length).decode("utf-8")
-            update = Update.de_json(json_string)
-            # Эта функция обеспечивает проверку входящего сообщения
-            bot.process_new_updates([update])
-            return ''
-        else:
-            raise cherrypy.HTTPError(403)
+# class WebhookServer(object):
+#     @cherrypy.expose
+#     def index(self):
+#         if 'content-length' in cherrypy.request.headers and \
+#                         'content-type' in cherrypy.request.headers and \
+#                         cherrypy.request.headers['content-type'] == 'application/json':
+#             length = int(cherrypy.request.headers['content-length'])
+#             json_string = cherrypy.request.body.read(length).decode("utf-8")
+#             update = Update.de_json(json_string)
+#             # Эта функция обеспечивает проверку входящего сообщения
+#             bot.process_new_updates([update])
+#             return ''
+#         else:
+#             raise cherrypy.HTTPError(403)
