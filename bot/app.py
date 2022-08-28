@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     executor.start_webhook(
         dispatcher=dp,
-        webhook_path=h.WEBHOOK_URL_PATH,
+        webhook_path=h.WEBHOOK_URL_BASE,
         skip_updates=True,
         on_startup=on_startup_h,
         on_shutdown=on_shutdown_h,
