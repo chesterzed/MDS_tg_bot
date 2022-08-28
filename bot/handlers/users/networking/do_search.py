@@ -7,8 +7,11 @@ from sql import User, Feedback, DontShow
 from keyboards.inline import search_kb, result_kb
 from states import Tinder
 
+from handlers.date_update import update_user_last_in
+
 
 async def show(message: types.Message, state: FSMContext):
+    update_user_last_in(message.from_user.id)
     await message.delete()
     data = await state.get_data()
 
@@ -61,6 +64,7 @@ async def show(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='do_search', state=Tinder.started)
 async def do_search(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     users = User.select()
     ds = DontShow.select().where(DontShow.user_1 == c.from_user.id)
@@ -127,6 +131,7 @@ async def do_search(c: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text='next', state=Tinder.started)
 async def next(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     data['page'] += 1
     await state.update_data(data)
@@ -136,6 +141,7 @@ async def next(c: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text='DontShow', state=Tinder.started)
 async def next(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     data['page'] += 1
     await state.update_data(data)
@@ -150,6 +156,7 @@ async def next(c: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text='back', state=Tinder.started)
 async def back(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
 
     text = "Бизнес тиндер \n"

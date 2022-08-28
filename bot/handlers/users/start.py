@@ -8,10 +8,13 @@ from states import Anketa
 from sql import User
 from keyboards.default import reg_kb, main_kb
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.message_handler(commands=['start'], state='*')
 @dp.message_handler(Text(contains='главное меню', ignore_case=True), state='*')
 async def bot_start(message: types.Message, state: FSMContext):
+    update_user_last_in(message.from_user.id)
     await state.finish()
     try:
         user = User.get(User.tg_id == message.from_user.id)
@@ -24,6 +27,7 @@ async def bot_start(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='main_menu', state='*')
 async def main_menu(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(с.from_user.id)
     user = User.get(User.tg_id == c.from_user.id)
     await c.message.answer("Главное меню", reply_markup=main_kb)
     await state.finish()
@@ -31,6 +35,7 @@ async def main_menu(c: types.CallbackQuery, state: FSMContext):
     
 @dp.message_handler(Text(contains='Регистрация', ignore_case=True))
 async def reg(message: types.Message):
+    update_user_last_in(message.from_user.id)
     await Anketa.name.set()
     await message.answer(text="Для начала пользования ботом необходимо заполнить анкету\n " \
                         "Пришли свой номер телефона для этого нажми на кнопку \n" \

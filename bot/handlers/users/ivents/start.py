@@ -5,9 +5,12 @@ from aiogram.dispatcher.filters import Text
 from loader import dp, bot
 from sql import Ivent, User
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.message_handler(Text(contains='Мероприятия', ignore_case=True))
 async def mychat(message: types.Message):
+    update_user_last_in(message.from_user.id)
     user = User.get(User.tg_id == message.from_user.id)
     ivents = Ivent().select()
 

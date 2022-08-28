@@ -6,9 +6,12 @@ from loader import dp
 from states import Tinder
 from sql import TaskConnect, User
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.callback_query_handler(text='connect', state=Tinder.started)
 async def connect(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     user = data['users'][data['page']]
     await state.update_data({'user': user})
@@ -19,6 +22,7 @@ async def connect(c: types.CallbackQuery, state: FSMContext):
 
 @dp.message_handler(state=Tinder.connect)
 async def about(message: types.Message, state:FSMContext):
+    update_user_last_in(message.from_user.id)
     data = await state.get_data()
     user_from = User.get(User.tg_id == message.from_user.id)
     user_to = data['user']

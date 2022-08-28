@@ -11,9 +11,12 @@ from keyboards.inline import search_kb, result_kb
 from states import Tinder
 from .do_search import show
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.callback_query_handler(text='feedback', state=Tinder.started)
 async def feedback(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     user = data['users'][data['page']]
 
@@ -25,6 +28,7 @@ async def feedback(c: types.CallbackQuery, state: FSMContext):
 
 @dp.message_handler(state=Tinder.feedback)
 async def mark(message: types.Message, state: FSMContext):
+    update_user_last_in(message.from_user.id)
     try:
         if int(message.text) > 0 and int(message.text) <= 10:
             data = await state.get_data()
@@ -50,6 +54,7 @@ async def mark(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=Tinder.desc)
 async def mark(message: types.Message, state: FSMContext):
+    update_user_last_in(message.from_user.id)
     try:
         if len(message.text) < 200:
             data = await state.get_data()
@@ -70,6 +75,7 @@ async def mark(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='view_feedback', state=Tinder.started)
 async def view_feedback(c: types.CallbackQuery, state: FSMContext):
+    update_user_last_in(c.from_user.id)
     data = await state.get_data()
     user = data['users'][data['page']].id
     feedbacks = Feedback.select().where(Feedback.user == user)
