@@ -11,14 +11,14 @@ from keyboards.default import main_kb
 
 @dp.message_handler(content_types=['contact'], state=Anketa.name)
 async def phone(message: types.Message, state: FSMContext):
-    phone = str(message.contact['phone_number']).replace('+', '')
+    ph = str(message.contact['phone_number']).replace('+', '')
     print(message.chat.id)
     print(message.from_user.id)
-    print(phone)
+    print(ph)
 
     try:
         print("suc")
-        user = User.get(User.phone == phone)
+        user = User.get(User.phone == ph)
         user.tg_id = message.from_user.id
         user.save()
         print("suc1")
