@@ -19,7 +19,7 @@ async def on_startup(dispatcher):
     await on_startup_notify(dispatcher)
 
 async def on_startup_h(dp):
-    await bot.set_webhook("109.68.213.180:443")
+    await bot.set_webhook(h.WEBHOOK_URL_BASE)
     # insert code here to run it after start
 
 
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         skip_updates=True,
         on_startup=on_startup_h,
         on_shutdown=on_shutdown_h,
-        check_ip=False,
+        check_ip=True,
     )
 
     executor.start_polling(dp, on_startup=on_startup)
