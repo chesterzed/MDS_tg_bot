@@ -62,11 +62,13 @@ if __name__ == '__main__':
         on_startup=on_startup_h,
         on_shutdown=on_shutdown_h,
         check_ip=False,
-
     )
+
+    executor.start_webhook()
+
     executor.start_polling(dp, on_startup=on_startup)
-    
+
     while True:
         db.close()
         db.connect()
-        time.sleep(18000)
+        time.sleep(9000)
