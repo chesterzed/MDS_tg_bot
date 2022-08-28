@@ -70,7 +70,9 @@ if __name__ == '__main__':
         skip_updates=True,
         on_startup=on_startup_h,
         on_shutdown=on_shutdown_h,
-        check_ip=True,
+        check_ip=False,
+        host=h.WEBHOOK_HOST,
+        port=h.WEBHOOK_PORT
     )
 
     executor.start_polling(dp, on_startup=on_startup)
