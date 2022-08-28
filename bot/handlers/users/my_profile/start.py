@@ -7,10 +7,13 @@ from sql import User, TaskConnect
 from keyboards.inline import profile_kb, edit_kb
 from states.Profile import AnketaProfile
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.message_handler(Text(contains='Мой профиль', ignore_case=True))
 @dp.message_handler(text='Назад к профилю', state='*')
 async def start(message: types.Message):
+    update_user_last_in(message.from_user.id)
     try:
         user = User.get(User.tg_id == message.from_user.id)
         text = f"Имя: {user.name} \n" \
@@ -36,7 +39,8 @@ async def start(message: types.Message):
 
 
 @dp.callback_query_handler(text='edit', state=AnketaProfile.started)
-async def edit(c: types.CallbackQuery):    
+async def edit(c: types.CallbackQuery):
+    update_user_last_in(c.from_user.id)
     # Очистка reply клавиатуры
     await c.message.answer('Редактирование профиля', reply_markup=ReplyKeyboardMarkup(
         [
@@ -51,6 +55,7 @@ async def edit(c: types.CallbackQuery):
 @dp.message_handler(state=AnketaProfile.started)
 @dp.message_handler(content_types=['photo'], state=AnketaProfile.started)
 async def edit(message: types.Message):
+    update_user_last_in(message.from_user.id)
     user_from = User.get(User.tg_id == message.from_user.id)
     about = message.text
 

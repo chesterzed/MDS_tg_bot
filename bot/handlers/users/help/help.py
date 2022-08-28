@@ -7,9 +7,12 @@ from sql import User, TaskConnect
 from keyboards.default import help_kb, back_kb
 from states.Help import Help
 
+from handlers.date_update import update_user_last_in
+
 
 @dp.message_handler(Text(contains='помощь', ignore_case=True))
 async def help_start(message: types.Message):
+    update_user_last_in(message.from_user.id)
     await Help.start.set()
     await message.answer("Чем могу помочь?", reply_markup=help_kb)
 
