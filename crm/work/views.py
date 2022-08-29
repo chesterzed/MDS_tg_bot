@@ -172,12 +172,11 @@ def statistic(req, id=None):
         if req.method == 'POST':
             data = req.POST.dict()
             # user.name = data['name']
-
             # user.save()
 
             if 'delete' in data:
                 stat.delete()
-                return redirect('main', 'users')
+                return redirect('main', 'statistic')
 
         if stat:
             return render(req, 'work/statistic.html', {'stat': stat})
