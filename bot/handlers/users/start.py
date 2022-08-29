@@ -12,7 +12,7 @@ from handlers.date_update import update_user_last_in
 
 
 @dp.message_handler(commands=['start'], state='*')
-@dp.message_handler(Text(contains='главное меню', ignore_case=True), state='*')
+@dp.message_handler(Text(contains='Главное меню', ignore_case=True), state='*')
 async def bot_start(message: types.Message, state: FSMContext):
     update_user_last_in(message.from_user.id)
     await state.finish()

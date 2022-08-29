@@ -10,7 +10,7 @@ from handlers.date_update import update_user_last_in
 
 @dp.message_handler(Text(contains='Мой чат', ignore_case=True))
 async def mychat(message: types.Message):
-    update_user_last_in(message.from_user.id)
+    # update_user_last_in(message.from_user.id)
     try:
         user = User.get(User.tg_id == message.from_user.id)
         chat = Chat.get(Chat.id == user.chat)
@@ -28,7 +28,7 @@ async def mychat(message: types.Message):
 
 @dp.message_handler(Text(contains='Новости МДС', ignore_case=True))
 async def news(message: types.Message):
-    update_user_last_in(message.from_user.id)
+    # update_user_last_in(message.from_user.id)
     user = User.get(User.tg_id == message.from_user.id)
     try:
         news = Channel.select()
