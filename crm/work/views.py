@@ -326,7 +326,7 @@ def add_mailing(req, id=None):
             mailing = Mailing.objects.get(id=id)
             mailing.name = data['name'] if 'name' in data else mailing.name
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-            mailing.desc = data['photo'] if 'photo' in data else mailing.photo
+            mailing.photo = data['photo'] if 'photo' in data else mailing.photo
             mailing.save()
 
             return render(req, 'work/mailing.html', {'mailing': Mailing.objects.get(id=id)})
