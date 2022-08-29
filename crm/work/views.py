@@ -352,10 +352,8 @@ def add_mailing(req, id=None):
 
         return redirect('mailing', mailing.id)
 
-    mailing = Mailing.objects.get(id=id)
-    # mailing.name = data['name'] if 'name' in data else mailing.name
-    # mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-    # mailing.photo = data['photo'] if 'photo' in data else mailing.photo
-    # mailing.save()
-
-    return render(req, 'work/mailing.html', {'mailing': mailing})
+    try:
+        mailing = Mailing.objects.get(id=id)
+        return render(req, 'work/mailing.html', {'mailing': mailing})
+    except:
+        return render(req, 'work/mailing.html', {'users': users})
