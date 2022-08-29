@@ -260,6 +260,37 @@
         {% endif %}
 
 
+
+
+        {% if page == 'statistic' %}
+
+        {% for statistic in stat %}
+        <div class="el" id="{{statistic.user_from}}">
+            <a href="{% url 'task_connect' statistic.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{task.user_from}}
+                        {% if task.photo_path != '' %}
+                        (изменение профиля)
+                        {% else %}
+                        (нетворкинг)
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+        <script>
+            var el = document.getElementById('task')
+            el.classList.add('navItemActive')
+        </script>
+
+        {% endif %}
+
+
+
+
         {% if page == 'ivent' %}
         {% for ivent in ivents %}
         <div class="el" id="{{ivent.user_from}}">
