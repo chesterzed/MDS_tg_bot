@@ -17,38 +17,23 @@
                 <tbody style="width: 30vw;">
                     <tr>
                         <td>
-                            {% if task.user_to == '0' %}
-                            Пользователь
-                            {% else %}
-                            Кто хочет связаться
-                            {% endif %}
+                            Телефон
                         </td>
                         <td>
-
-                            {% for lan in users%}
-                            <!-- <a href="{% url 'user' 43 %}">{{lan.phone}}</a> -->
-                            {%if lan.phone == task.user_from%}
-                            <a href="{% url 'user' lan.id %}">{{task.user_from}}</a>
-                            {% endif %}
-                            {% endfor %}
-                            <!-- <a href="{% url 'user' 43 %}">{{task.user_from}}</a> -->
+                            {{statistic.user_phone}}
                         </td>
                     </tr>
-                    {% if task.user_to != '0' %}
+
                     <tr>
                         <td>С кем хочет связаться</td>
                         <td>
-                            {{task.user_to}}
+                            Сколько дней оффлайн
                         </td>
                     </tr>
                     {% endif %}
                     <tr>
                         <td>
-                            {% if task.user_to == '0' %}
-                            Что изменить
-                            {% else %}
-                            Зачем хочет связаться
-                            {% endif %}
+                            {{statistic.about}}
                         </td>
                         <td>
                             {{statistic.message}}
@@ -64,9 +49,9 @@
                 </tbody>
             </table>
         </div>
-        <a href="{% url 'main' 'task' %}"><button class="button" type="button">Назад</button></a>
-        <button class="button" type="submit" name="delete">Отказать</button>
-        <button class="button" type="submit" name="connect">Одобрить</button>
+        <a href="{% url 'main' 'statistic' %}"><button class="button" type="button">Прояви уважени и заполни поле, что
+                его потом не проявить, а если не хочешь иди нахуй!!!!</button></a>
+        <button class="button" type="submit" name="delete">Проявить неуважение</button>
     </form>
 
 </div>
