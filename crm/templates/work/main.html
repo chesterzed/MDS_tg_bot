@@ -234,15 +234,15 @@
 
         {% if page == 'statistic' %}
 
-        {% for statistic in stat %}
-        <div class="el" id="{{st.user_phone}}">
-            <a href="{% url 'user' user.id %}" style="color:#000;">
-                <div class="templateCard">
-                    <div class="card-body">
-                        {{st.user_phone}}
-                    </div>
-                </div>
-            </a>
+        {% for stat in statistic %}
+        <div class="el" id="{{stat.user_phone}}">
+{#            <a href="{% url 'user' user.id %}" style="color:#000;">#}
+{#                <div class="templateCard">#}
+{#                    <div class="card-body">#}
+{#                        {{st.user_phone}}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </a>#}
         </div>
         {% endfor %}
 
