@@ -319,22 +319,18 @@ def add_mailing(req, id=None):
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
             return redirect('mailing')
-        # if id:
-        #     print("FFFFF")
-        #     mailing = Mailing.objects.get(id=id)
-        #     mailing.name = data['name'] if 'name' in data else mailing.name
-        #     # mailing.type_mailing = data['type_mailing'] if 'type_mailing' in data else mailing.type_mailing
-        #
-        #     mailing.desc = data['desc'] if 'desc' in data else mailing.desc
-        #
-        #     # mailing.manage = True if data['manage'] == 'true' else False
-        #
-        #     mailing.save()
-        #     data = {
-        #         'mailing': Mailing.objects.get(id=id)
-        #     }
-        #
-        #     return render(req, 'work/mailing.html', data)
+        if id:
+            print("FFFFF")
+            mailing = Mailing.objects.get(id=id)
+            mailing.name = data['name'] if 'name' in data else mailing.name
+            mailing.desc = data['desc'] if 'desc' in data else mailing.desc
+            mailing.desc = data['photo'] if 'photo' in data else mailing.photo
+            mailing.save()
+            data = {
+                'mailing': Mailing.objects.get(id=id)
+            }
+
+            return render(req, 'work/mailing.html', data)
 
         mailing = Mailing()
         mailing.name = data['name']
@@ -344,11 +340,11 @@ def add_mailing(req, id=None):
         file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
 
         mailing.photo = f'../crm/media/{file_name}'
-
+        mailing.numbers = data['our']
         mailing.save()
 
         # send messages to the people
-        for phone in data['our'].split():
+        for phone in mailing.numbers.split():
             print(phone)
             try:
                 user = User_tg.objects.get(phone=phone)
