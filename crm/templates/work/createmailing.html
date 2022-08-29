@@ -2,40 +2,32 @@
 {% load static %}
 
 {% block main %}
+
 <link rel="stylesheet" href="{% static 'css/work/main.css' %}">
 
 <div class="mainPage">
 
 	<form action="" method="post" enctype="multipart/form-data">
-
-
 		{% csrf_token %}
 		<div class="templateCard">
-
-{#			{% for us in users %}#}
-{#			{{ us.tg_id }}#}
-{#			{% endfor %}#}
 			<table class="table">
 				<tbody style="width: 30vw;">
 					<tr>
 						<td>Название</td>
-						<td>
-							<input value="{{mailing.name}}" type="text" required name="name" minlength="2" maxlength="1000"
-								placeholder="*" class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
-						</td>
+						<td><input type="text" name="name" required class="searchInpt"
+								style="border: 1px solid rgba(142,148,177,.5);" minlength="2" maxlength="1000"></td>
 					</tr>
 					<tr>
 						<td>Описание</td>
 						<td>
-							<textarea type="text" name="desc" class="searchInpt" placeholder="*" required
-								style="border: 1px solid rgba(142,148,177,.5); height: 200px; width: 300px;">{{mailing.desc}}</textarea>
+							<textarea type="text" name="desc" class="searchInpt" required
+								style="border: 1px solid rgba(142,148,177,.5); height: 200px; width: 300px;"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>Фото</td>
 						<td>
-							<input value="{{ mailing.photo }}" type="file" name="photo" class="searchInptPhoto"
-                                   id="fileName" required style="border: 0;">
+							<input value="{{ mailing.photo }}" type="file" name="photo" class="searchInptPhoto" id="fileName" required style="border: 0;">
 						</td>
 					</tr>
 					<tr>

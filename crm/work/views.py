@@ -309,7 +309,7 @@ def add_ivent(req, id=None):
     return render(req, 'work/addivent.html', data)
 
 
-def add_mailing(req, id):
+def add_mailing(req, id=None):
     users = User_tg.objects.all()
     """Создать мероприятие"""
     if req.method == 'POST':
@@ -328,16 +328,12 @@ def add_mailing(req, id):
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
             mailing.desc = data['photo'] if 'photo' in data else mailing.photo
             mailing.save()
-            data = {
-                'mailing': Mailing.objects.get(id=id)
-            }
 
-            return render(req, 'work/mailing.html', data)
+            return render(req, 'work/mailing.html', {'mailing': Mailing.objects.get(id=id)})
 
         mailing = Mailing()
         mailing.name = data['name']
         mailing.desc = data['desc']
-
         file = req.FILES['photo']
         file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
 
