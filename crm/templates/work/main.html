@@ -260,11 +260,11 @@
         {% endif %}
 
 
-        {% if page == 'statistic111' %}
+        {% if page == 'statistic' %}
 
         {% for stat in statistic %}
         <div class="el" id="{{stat.user_phone}}">
-            <a href="{% url 'statistic111' stat.id %}" style="color:#000;">
+            <a href="{% url 'statistic' stat.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
                         {{stat.user_phone}}
@@ -275,7 +275,7 @@
         {% endfor %}
 
         <script>
-            var el = document.getElementById('statistic111')
+            var el = document.getElementById('statistic')
             el.classList.add('navItemActive')
         </script>
 

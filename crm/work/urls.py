@@ -11,7 +11,7 @@ urlpatterns = [
     path('create_user/', create_user, name='create_user'),
     path('user/<int:id>', user_page, name='user'),
 
-    path('statistic111/<int:id>', statistic, name='statistic111'),
+    path('statistic/<int:id>', statistic, name='statistic'),
 
     path('create_staf/', create_staf, name='create_staf'),
     path('create_channel/', create_channel_view, name='create_channel'),
