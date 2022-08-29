@@ -141,9 +141,8 @@ def user_page(req, id=None):
         if req.method == 'POST':
             data = req.POST.dict()
             user.name = data['name']
-            user.about = data['about']
-            
             user.photo = f"../crm/media/{data['phone']}.{str(file.name).split('.')[-1]}"
+            user.about = data['about']
             user.about_1 = data['about_1']
             user.about_2 = data['about_2']
             user.about_3 = data['about_3']
