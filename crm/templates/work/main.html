@@ -262,9 +262,9 @@
 
         {% if page == 'statistic111' %}
 
-        {% for stat in statistic111 %}
+        {% for stat in statistic %}
         <div class="el" id="{{stat.user_phone}}">
-            <a href="{% url 'statistic111' stat.id %}" style="color:#000;">
+            <a href="{% url 'statistic' stat.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
                         {{stat.user_phone}}
