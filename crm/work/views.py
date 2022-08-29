@@ -319,6 +319,7 @@ def add_mailing(req, id=None):
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
             return redirect('mailing')
+        print(id)
         if id:
             print("FFFFF")
             mailing = Mailing.objects.get(id=id)
