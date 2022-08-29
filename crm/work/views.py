@@ -141,6 +141,7 @@ def user_page(req, id=None):
         if req.method == 'POST':
             data = req.POST.dict()
             print(data)
+            print(req.FILES)
             user.name = data['name']
             # user.photo = f"../crm/media/{data['phone']}.{str(file.name).split('.')[-1]}"
             file = req.FILES['photo']
