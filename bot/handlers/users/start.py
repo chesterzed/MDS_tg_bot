@@ -27,7 +27,7 @@ async def bot_start(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='main_menu', state='*')
 async def main_menu(c: types.CallbackQuery, state: FSMContext):
-    update_user_last_in(с.from_user.id)
+    update_user_last_in(c.from_user.id)
     user = User.get(User.tg_id == c.from_user.id)
     await c.message.answer("Главное меню", reply_markup=main_kb)
     await state.finish()
