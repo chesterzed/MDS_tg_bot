@@ -329,17 +329,17 @@ def add_mailing(req, id=None):
             mailing.photo = data['photo'] if 'photo' in data else mailing.photo
             mailing.save()
 
-            return render(req, 'work/mailing.html', {'mailing': Mailing.objects.get(id=id)})
+            return render(req, 'work/mailing.html', {'mailing': mailing})
+        else:
+            mailing = Mailing()
+            mailing.name = data['name']
+            mailing.desc = data['desc']
+            file = req.FILES['photo']
+            file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
 
-        mailing = Mailing()
-        mailing.name = data['name']
-        mailing.desc = data['desc']
-        file = req.FILES['photo']
-        file_name = default_storage.save(f'{mailing.id}.{str(file.name).split(".")[-1]}', file)
-
-        mailing.photo = f'../crm/media/{file_name}'
-        mailing.numbers = data['our']
-        mailing.save()
+            mailing.photo = f'../crm/media/{file_name}'
+            mailing.numbers = data['our']
+            mailing.save()
 
         # send messages to the people
         for phone in mailing.numbers.split():
