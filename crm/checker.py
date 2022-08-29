@@ -33,7 +33,7 @@ def get_table(connection, table):
 def insert_to_tasks(connection, i_user_phone, i_about):
     table_query = f"""
     INSERT INTO work_statistic (user_phone, message) 
-    VALUES ( %s, %s)"""
+    VALUES (%s, %s)"""
 
     cursor = connection.cursor()
     li = (i_user_phone, str(i_about))
