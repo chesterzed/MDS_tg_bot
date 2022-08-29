@@ -30,13 +30,13 @@ def get_table(connection, table):
     return cursor.fetchall()
 
 
-def insert_to_tasks(connection, i_user_from, i_about):
+def insert_to_tasks(connection, i_user_phone, i_about):
     table_query = f"""
-    INSERT INTO work_statistic (user_from, user_to, about, photo_path) 
-    VALUES ( %s, %s, %s, %s)"""
+    INSERT INTO work_statistic (user_phone, message) 
+    VALUES ( %s, %s)"""
 
     cursor = connection.cursor()
-    li = (i_user_from, str(i_about))
+    li = (i_user_phone, str(i_about))
     cursor.execute(table_query, li)
     connection.commit()
 
