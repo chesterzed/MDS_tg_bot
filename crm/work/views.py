@@ -320,8 +320,7 @@ def add_mailing(req, id=None):
             print('rrr')
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
-            return redirect('mailing')
-            # return render(req, 'work/mailing.html')
+            return render(req, 'work/mailing.html')
 
         if id:
             print("FFFFF")
