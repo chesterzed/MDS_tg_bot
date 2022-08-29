@@ -309,7 +309,7 @@ def add_ivent(req, id=None):
     return render(req, 'work/addivent.html', data)
 
 
-def add_mailing(req, id=None):
+def add_mailing(req, id):
     users = User_tg.objects.all()
     """Создать мероприятие"""
     if req.method == 'POST':

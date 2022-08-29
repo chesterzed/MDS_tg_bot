@@ -12,15 +12,15 @@
 		{% csrf_token %}
 		<div class="templateCard">
 
-			{% for us in users %}
-			{{ us.tg_id }}
-			{% endfor %}
+{#			{% for us in users %}#}
+{#			{{ us.tg_id }}#}
+{#			{% endfor %}#}
 			<table class="table">
 				<tbody style="width: 30vw;">
 					<tr>
 						<td>Название</td>
 						<td>
-							<input value='{{mailing.name}}' type="text" required name="name" minlength="2" maxlength="1000"
+							<input value="{{mailing.name}}" type="text" required name="name" minlength="2" maxlength="1000"
 								placeholder="*" class="searchInpt" style="border: 1px solid rgba(142,148,177,.5);">
 						</td>
 					</tr>
@@ -34,7 +34,7 @@
 					<tr>
 						<td>Фото</td>
 						<td>
-							<input type="file" name="photo" class="searchInptPhoto" id="fileName" required style="border: 0;">
+							<input value="{{ mailing.photo }}" type="file" name="photo" class="searchInptPhoto" id="fileName" required style="border: 0;">
 						</td>
 					</tr>
 					<tr>
