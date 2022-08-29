@@ -36,7 +36,7 @@ def insert_to_tasks(connection, i_user_phone, i_about):
     VALUES (%s, %s)"""
 
     cursor = connection.cursor()
-    li = (i_user_phone, str(i_about))
+    li = (str(i_user_phone), str(i_about))
     cursor.execute(table_query, li)
     connection.commit()
 
