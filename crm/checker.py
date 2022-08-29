@@ -56,6 +56,7 @@ def user_leave_checker():
             days_passed = 0
 
         if days_passed >= 3:
+            print(row)
             insert_to_tasks(connection1, row[1], f"Не заходил в бота {int(days_passed)} дней")
 
     connection1.commit()
