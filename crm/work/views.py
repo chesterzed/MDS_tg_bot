@@ -136,12 +136,13 @@ def user_page(req, id=None):
     messages = []
     if req.user.is_authenticated:
         user = User_tg.objects.get(id=id)
-        file = req.FILES['photo']
+        # file = req.FILES['photo']
         
         if req.method == 'POST':
             data = req.POST.dict()
+            print(data)
             user.name = data['name']
-            user.photo = f"../crm/media/{data['phone']}.{str(file.name).split('.')[-1]}"
+            # user.photo = f"../crm/media/{data['phone']}.{str(file.name).split('.')[-1]}"
             user.about = data['about']
             user.about_1 = data['about_1']
             user.about_2 = data['about_2']
