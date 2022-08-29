@@ -41,7 +41,7 @@ def main(req, page=None):
         elif page == 'statistic':
             """Страница управления контентом"""
             stat = Statistic.objects.all()
-            return render(req, 'work/main.html', {'page': page, 'statistic': stat})
+            return render(req, 'work/main.html', {'statistic': stat, 'page': page})
 
         else:
             users = User.objects.all()
