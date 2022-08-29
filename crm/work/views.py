@@ -354,6 +354,6 @@ def add_mailing(req, id=None):
 
     try:
         mailing = Mailing.objects.get(id=id)
-        return render(req, 'work/mailing.html', {'mailing': mailing})
+        return render(req, 'work/mailing.html', {'mailing': mailing, 'users': users})
     except:
         return render(req, 'work/mailing.html', {'users': users})
