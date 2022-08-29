@@ -38,7 +38,7 @@ def main(req, page=None):
             ivents = Ivent.objects.all()
             return render(req, 'work/main.html', {'ivents': ivents, 'page': page})
 
-        elif page == 'statistic':
+        elif page == 'statistic111':
             """Страница управления контентом"""
             stat = Statistic.objects.all()
             return render(req, 'work/main.html', {'statistic': stat, 'page': page})
