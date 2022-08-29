@@ -269,8 +269,8 @@
             <a href="{% url 'task_connect' statistic.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
-                        {{task.user_from}}
-                        {% if task.photo_path != '' %}
+                        {{statistic.user_from}}
+                        {% if statistic.photo_path != '' %}
                         (изменение профиля)
                         {% else %}
                         (нетворкинг)
