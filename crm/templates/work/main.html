@@ -270,11 +270,7 @@
                 <div class="templateCard">
                     <div class="card-body">
                         {{statistic.user_from}}
-                        {% if statistic.photo_path != '' %}
-                        (изменение профиля)
-                        {% else %}
-                        (нетворкинг)
-                        {% endif %}
+
                     </div>
                 </div>
             </a>
@@ -282,7 +278,7 @@
         {% endfor %}
 
         <script>
-            var el = document.getElementById('statistic')
+            var el = document.getElementById('statisti')
             el.classList.add('navItemActive')
         </script>
 
