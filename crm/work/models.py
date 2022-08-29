@@ -95,6 +95,16 @@ class Mailing(models.Model):
         verbose_name_plural = "Рассылки"
 
 
+class Statistic(models.Model):
+    """Рассылки"""
+    user_phone = models.CharField()
+    message = models.TextField()
+
+    class Meta:
+        verbose_name = "Статистика"
+        verbose_name_plural = "Статистика"
+
+
 class TaskConnect(models.Model):
     """Таск по связыванию пользователей через нетворкинг"""
     user_from = models.CharField(max_length=100)

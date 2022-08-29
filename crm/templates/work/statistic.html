@@ -50,20 +50,7 @@
                             Зачем хочет связаться
                             {% endif %}
                         </td>
-                        <td>
-                            {% if photo %}
-                            изменение фото
-                            {% else %}
-                            {{task.about}}
-                            {% endif %}
-                        </td>
                     </tr>
-                    {% if photo %}
-                    <tr>
-                        <td>Фото</td>
-                        <td><img src="{{photo}}" height="200px"></td>
-                    </tr>
-                    {% endif %}
                 </tbody>
             </table>
         </div>

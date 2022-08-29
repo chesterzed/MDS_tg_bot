@@ -1,6 +1,6 @@
 from requests import delete
 from accounts.models import User
-from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing
+from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing, Statistic
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
@@ -35,8 +35,12 @@ def main(req, page=None):
         elif page == 'ivent':
             """Страница управления контентом"""
             ivents = Ivent.objects.all()
-            
             return render(req, 'work/main.html', {'ivents': ivents, 'page': page})
+
+        elif page == 'statistic':
+            """Страница управления контентом"""
+            stat = Statistic.objects.all()
+            return render(req, 'work/main.html', {'statistic': stat, 'page': page})
 
         else:
             users = User.objects.all()
@@ -156,6 +160,26 @@ def user_page(req, id=None):
         if user:
             ban = '_ban' in user.tg_id
             return render(req, 'work/user.html', {'user': user, 'ban': ban, 'messages': messages})
+
+
+def statistic(req, id=None):
+    """Страница пользователя"""
+    if req.user.is_authenticated:
+        stat = Statistic.objects.get(id=id)
+        user = User_tg.objects.get(phone=stat.user_phone)
+
+        if req.method == 'POST':
+            data = req.POST.dict()
+            user.name = data['name']
+
+            user.save()
+
+            if 'delete' in data:
+                stat.delete()
+                return redirect('main', 'users')
+
+        if stat:
+            return render(req, 'work/statistic.html', {'stat': stat})
 
 
 def create_channel_view(req):

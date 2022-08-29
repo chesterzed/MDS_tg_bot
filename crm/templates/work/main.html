@@ -46,6 +46,11 @@
             </li>
             {% endif %}
 
+            {% if request.user.user_manage %}
+            <li class="navItem" id="statistic"><a href="{% url 'main' 'statistic' %}" style="color: #0e1f4d;">Статистика</a>
+            </li>
+            {% endif %}
+
             {% if request.user.channel_manage %}
             <li class="navItem" id="channels"><a href="{% url 'main' 'channels' %}" style="color: #0e1f4d;">Каналы</a>
             </li>
@@ -54,12 +59,15 @@
             {% if request.user.chat_manage %}
             <li class="navItem" id="chats"><a href="{% url 'main' 'chats' %}" style="color: #0e1f4d;">Чаты</a></li>
             {% endif %}
+
             {% if request.user.chat_manage %}
             <li class="navItem" id="task"><a href="{% url 'main' 'task' %}" style="color: #0e1f4d;">Таски</a></li>
             {% endif %}
+
             {% if request.user.chat_manage %}
             <li class="navItem" id="ivent"><a href="{% url 'main' 'ivent' %}" style="color: #0e1f4d;">Мероприятие</a>
             </li>{% endif %}
+
             {% if request.user.chat_manage %}
             <li class="navItem" id="mailing"><a href="{% url 'main' 'mailing' %}" style="color: #0e1f4d;">Рассылка</a>
             </li>{% endif %}
