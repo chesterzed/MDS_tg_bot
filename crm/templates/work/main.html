@@ -260,11 +260,9 @@
         {% endif %}
 
 
-
-
         {% if page == 'statistic' %}
 
-        {% for statistic in stat %}
+        {% for stat in statistic %}
         <div class="el" id="{{statistic.user_from}}">
             <a href="{% url 'statistic' statistic.id %}" style="color:#000;">
                 <div class="templateCard">
