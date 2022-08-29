@@ -266,7 +266,7 @@
 
         {% for statistic in stat %}
         <div class="el" id="{{statistic.user_from}}">
-            <a href="{% url 'task_connect' statistic.id %}" style="color:#000;">
+            <a href="{% url 'statistic' statistic.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
                         {{statistic.user_from}}

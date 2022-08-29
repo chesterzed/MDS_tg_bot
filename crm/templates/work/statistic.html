@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/work/main.css' %}">
 
 <div class="mainPage">
+
     <form action="" method="post">
         {% csrf_token %}
         <div class="templateCard">
@@ -23,6 +24,7 @@
                             {% endif %}
                         </td>
                         <td>
+
                             {% for lan in users%}
                             <!-- <a href="{% url 'user' 43 %}">{{lan.phone}}</a> -->
                             {%if lan.phone == task.user_from%}
@@ -48,7 +50,20 @@
                             Зачем хочет связаться
                             {% endif %}
                         </td>
+                        <td>
+                            {% if photo %}
+                            изменение фото
+                            {% else %}
+                            {{task.about}}
+                            {% endif %}
+                        </td>
                     </tr>
+                    {% if photo %}
+                    <tr>
+                        <td>Фото</td>
+                        <td><img src="{{photo}}" height="200px"></td>
+                    </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -56,6 +71,7 @@
         <button class="button" type="submit" name="delete">Отказать</button>
         <button class="button" type="submit" name="connect">Одобрить</button>
     </form>
+
 </div>
 
 {% endblock main %}
