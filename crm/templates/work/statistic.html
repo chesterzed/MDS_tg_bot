@@ -11,7 +11,7 @@
         {% csrf_token %}
         <div class="templateCard">
             <h1 class="title-blok"><input type="text" name="name" minlength="2" maxlength="1000"
-                    pattern="^[А-Яа-яЁё\s]+$" required value="{{user.name}}" style="width: 100%;">
+                    pattern="^[А-Яа-яЁё\s]+$" required value="" style="width: 100%;">
             </h1>
             <table class="table">
                 <tbody style="width: 30vw;">
@@ -23,24 +23,17 @@
                             {{statistic.user_phone}}
                         </td>
                     </tr>
-
                     <tr>
                         <td>Сколько дней оффлайн</td>
-
                     </tr>
-
                     <tr>
                         <td>
                             {{statistic.about}}
                         </td>
                         <td>
                             {{statistic.message}}
-
                         </td>
                     </tr>
-
-
-
                 </tbody>
             </table>
         </div>
