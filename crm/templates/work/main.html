@@ -234,9 +234,6 @@
 
         {% if page == 'statistic' %}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {% for stat in statistic%}
         <div class="el" id="{{st.user_phone}}">
             <a href="{% url 'user' user.id %}" style="color:#000;">
                 <div class="templateCard">
@@ -245,20 +242,8 @@
                     </div>
                 </div>
             </a>
-=======
-        {% for stat in statistic %}
-=======
-        {% for statistic in stat %}
->>>>>>> 89403b1afe9dea519920b8f4d4c82473ed3eb48c
-        <div class="el" id="{{stat.user_phone}}">
-{#            <a href="{% url 'user' user.id %}" style="color:#000;">#}
-{#                <div class="templateCard">#}
-{#                    <div class="card-body">#}
-{#                        {{st.user_phone}}#}
-{#                    </div>#}
-{#                </div>#}
-{#            </a>#}
->>>>>>> 0e8a32f57b7218c645f41661d0fa7295f1a45df6
+
+
         </div>
         {% endfor %}
 
@@ -289,7 +274,7 @@
 
 
 
-            <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
+            <a href="{% url 'task_connect' task.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
                         {{mailing.name}}
