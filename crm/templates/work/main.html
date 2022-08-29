@@ -47,7 +47,8 @@
             {% endif %}
 
             {% if request.user.user_manage %}
-            <li class="navItem" id="statistic"><a href="{% url 'main' 'statistic' %}" style="color: #0e1f4d;">Статистика</a>
+            <li class="navItem" id="statistic"><a href="{% url 'main' 'statistic' %}"
+                    style="color: #0e1f4d;">Статистика</a>
             </li>
             {% endif %}
 
@@ -233,7 +234,7 @@
 
         {% if page == 'statistic' %}
 
-        {% for st in statistic %}
+        {% for statistic in stat %}
         <div class="el" id="{{st.user_phone}}">
             <a href="{% url 'user' user.id %}" style="color:#000;">
                 <div class="templateCard">
