@@ -179,7 +179,7 @@ def statistic(req, id=None):
                 return redirect('main', 'statistic')
 
         if stat:
-            return render(req, 'work/statistic.html', {'stat': stat})
+            return render(req, 'work/statistic.html', {'statistic': stat})
     return redirect('login')
 
 
