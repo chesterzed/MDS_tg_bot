@@ -179,6 +179,7 @@ def create_channel_view(req):
 
 
 def channel_view(req, id):
+    print(id)
     """Просмотр и редактирование канала"""
     channel = Channel.objects.get(id=id)
 
