@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/work/main.css' %}">
 
 <div class="mainPage">
-
     <form action="" method="post">
         {% csrf_token %}
         <div class="templateCard">
@@ -24,7 +23,6 @@
                             {% endif %}
                         </td>
                         <td>
-
                             {% for lan in users%}
                             <!-- <a href="{% url 'user' 43 %}">{{lan.phone}}</a> -->
                             {%if lan.phone == task.user_from%}
@@ -58,7 +56,6 @@
         <button class="button" type="submit" name="delete">Отказать</button>
         <button class="button" type="submit" name="connect">Одобрить</button>
     </form>
-
 </div>
 
 {% endblock main %}
