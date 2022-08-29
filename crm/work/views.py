@@ -320,7 +320,7 @@ def add_mailing(req, id=None):
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
             return redirect('mailing')
-        print(id)
+
         if id:
             print("FFFFF")
             mailing = Mailing.objects.get(id=id)
@@ -328,6 +328,8 @@ def add_mailing(req, id=None):
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
             mailing.photo = data['photo'] if 'photo' in data else mailing.photo
             mailing.save()
+
+            mail_users(mailing, data)
 
             return render(req, 'work/mailing.html', {'mailing': mailing})
         else:
@@ -341,19 +343,22 @@ def add_mailing(req, id=None):
             mailing.numbers = data['our']
             mailing.save()
 
-        # send messages to the people
-        for phone in mailing.numbers.split():
-            print(phone)
-            try:
-                user = User_tg.objects.get(phone=phone)
-                send_message(user.tg_id, data['desc'])
-            except:
-                pass
+            mail_users(mailing, data)
 
-        return redirect('mailing', mailing.id)
+            return redirect('mailing', mailing.id)
 
     try:
         mailing = Mailing.objects.get(id=id)
         return render(req, 'work/mailing.html', {'mailing': mailing, 'users': users})
     except:
         return render(req, 'work/mailing.html', {'users': users})
+
+def mail_users(mailing, data):
+    # send messages to the people
+    for phone in mailing.numbers.split():
+        print(phone)
+        try:
+            user = User_tg.objects.get(phone=phone)
+            send_message(user.tg_id, data['desc'])
+        except:
+            pass
