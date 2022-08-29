@@ -28,9 +28,9 @@ def main(req, page=None):
             task = TaskConnect.objects.all()
             return render(req, 'work/main.html', {'page': page, 'tasks': task})
 
-        elif page == 'stastik':
-            stastik = Stastik.objects.all()
-            return render(req, 'work/main.html', {'page': page, 'stastiks': stastik})
+        # elif page == 'stastik':
+        #     stastik = Stastik.objects.all()
+        #     return render(req, 'work/main.html', {'page': page, 'stastiks': stastik})
 
         elif page == 'mailing':
             mailings = Mailing.objects.all()
