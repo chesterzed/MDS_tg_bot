@@ -164,6 +164,7 @@ def user_page(req, id=None):
 
 
 def statistic(req, id=None):
+    print(id)
     """Страница пользователя"""
     if req.user.is_authenticated:
         stat = Statistic.objects.get(id=id)
@@ -181,6 +182,7 @@ def statistic(req, id=None):
 
         if stat:
             return render(req, 'work/statistic.html', {'stat': stat})
+    return redirect('login')
 
 
 def create_channel_view(req):
