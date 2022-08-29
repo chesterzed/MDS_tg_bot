@@ -234,11 +234,11 @@
         {% if page == 'statistic' %}
 
         {% for st in statistic %}
-        <div class="el" id="{{stat.user_phone}}">
+        <div class="el" id="{{st.user_phone}}">
             <a href="{% url 'user' user.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
-                        {{stat.user_phone}}
+                        {{st.user_phone}}
                     </div>
                 </div>
             </a>
