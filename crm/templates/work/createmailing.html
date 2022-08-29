@@ -27,7 +27,8 @@
 					<tr>
 						<td>Фото</td>
 						<td>
-							<input value="{{ mailing.photo }}" type="file" name="photo" class="searchInptPhoto" id="fileName" required style="border: 0;">
+							<input value="{{ mailing.photo }}" type="file" name="photo" class="searchInptPhoto" id="fileName"
+								required style="border: 0;">
 						</td>
 					</tr>
 					<tr>
@@ -197,18 +198,18 @@
 
 		})
 	})
-    
+
 
 	document.querySelector('#all').addEventListener('click', ((ev) => {
 		document.querySelectorAll('[name="manage"]').forEach((e) => {
 			e.value = true
-            our.push(e.parentElement.querySelector('span').innerHTML)
+			our.push(e.parentElement.querySelector('span').innerHTML)
 
-				str = ''
-				our.forEach((e) => {
-					str += (e + ' ')
-				})
-				document.querySelector('#ourInput').value = str
+			str = ''
+			our.forEach((e) => {
+				str += (e + ' ')
+			})
+			document.querySelector('#ourInput').value = str
 		})
 	}))
 
