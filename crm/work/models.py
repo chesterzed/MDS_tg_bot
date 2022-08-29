@@ -58,7 +58,7 @@ class User_tg(models.Model):
         db_table = 'work_users'
         verbose_name = 'Пользователь тг'
         verbose_name_plural = 'Пользователи тг'
-
+                                          
 
 class DontShow(models.Model):
     """Не показывать в нетворкинге (для телеграма)"""

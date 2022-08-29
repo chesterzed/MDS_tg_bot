@@ -199,7 +199,6 @@ def channel_view(req, id):
 
             change_channel(data['name'], channel.link)
             return render(req, 'work/channel.html', {'channel': channel})
-    
     else:
         return render(req, 'work/channel.html', {'channel': channel})
 
@@ -311,6 +310,7 @@ def add_ivent(req, id=None):
 
 def add_mailing(req, id=None):
     users = User_tg.objects.all()
+    print(id)
     """Создать мероприятие"""
     if req.method == 'POST':
         data = req.POST.dict()
