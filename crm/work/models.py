@@ -97,7 +97,7 @@ class Mailing(models.Model):
 
 class Statistic(models.Model):
     """Рассылки"""
-    user_phone = models.CharField(max_length=255)
+    user_phone = models.CharField(verbose_name='user_phone', max_length=255)
     message = models.TextField()
 
     class Meta:

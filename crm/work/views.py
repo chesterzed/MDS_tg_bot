@@ -164,17 +164,16 @@ def user_page(req, id=None):
 
 
 def statistic(req, id=None):
-    print(id)
     """Страница пользователя"""
     if req.user.is_authenticated:
         stat = Statistic.objects.get(id=id)
-        user = User_tg.objects.get(phone=stat.user_phone)
+        # user = User_tg.objects.get(phone=stat.user_phone)
 
         if req.method == 'POST':
             data = req.POST.dict()
-            user.name = data['name']
+            # user.name = data['name']
 
-            user.save()
+            # user.save()
 
             if 'delete' in data:
                 stat.delete()
