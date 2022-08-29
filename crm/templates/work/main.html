@@ -234,7 +234,7 @@
 
         {% if page == 'statistic' %}
 
-        {% for statistic in stat %}
+        {% for stat in statistic%}
         <div class="el" id="{{st.user_phone}}">
             <a href="{% url 'user' user.id %}" style="color:#000;">
                 <div class="templateCard">
@@ -258,7 +258,7 @@
 
         {% for task in tasks %}
         <div class="el" id="{{task.user_from}}">
-            <a href="{% url 'task_connect' task.id %}" style="color:#000;">
+            <!-- <a href="{% url 'task_connect' task.id %}" style="color:#000;">
                 <div class="templateCard">
                     <div class="card-body">
                         {{task.user_from}}
@@ -268,6 +268,16 @@
                         (нетворкинг)
                     </div>
                     {% endif %}
+                </div>
+            </a> -->
+
+
+
+            <a href="{% url 'mailing' mailing.id %}" style="color:#000;">
+                <div class="templateCard">
+                    <div class="card-body">
+                        {{mailing.name}}
+                    </div>
                 </div>
             </a>
         </div>
