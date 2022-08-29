@@ -30,13 +30,13 @@ def get_table(connection, table):
     return cursor.fetchall()
 
 
-def insert_to_tasks(connection, i_user_from, i_user, i_about, i_photo_path):
+def insert_to_tasks(connection, i_user_phone, i_about):
     table_query = f"""
-    INSERT INTO work_taskconnect (user_from, user_to, about, photo_path) 
-    VALUES ( %s, %s, %s, %s)"""
+    INSERT INTO work_statistic (user_phone, message) 
+    VALUES ( %s, %s)"""
 
     cursor = connection.cursor()
-    li = (i_user_from, i_user, str(i_about), str(i_photo_path))
+    li = (i_user_phone, str(i_about))
     cursor.execute(table_query, li)
     connection.commit()
 
@@ -56,7 +56,7 @@ def user_leave_checker():
             days_passed = 0
 
         if days_passed >= 3:
-            insert_to_tasks(connection1, row[1], 0, f"Не заходил в бота {days_passed} дней", '')
+            insert_to_tasks(connection1, row[1], f"Не заходил в бота {days_passed} дней")
 
     connection1.commit()
 
