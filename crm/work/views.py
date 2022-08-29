@@ -1,6 +1,6 @@
 from requests import delete
 from accounts.models import User
-from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing, Stastik
+from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
