@@ -28,10 +28,6 @@ def main(req, page=None):
             task = TaskConnect.objects.all()
             return render(req, 'work/main.html', {'page': page, 'tasks': task})
 
-        # elif page == 'stastik':
-        #     stastik = Stastik.objects.all()
-        #     return render(req, 'work/main.html', {'page': page, 'stastiks': stastik})
-
         elif page == 'mailing':
             mailings = Mailing.objects.all()
             return render(req, 'work/main.html', {'mailings': mailings, 'page': page})
@@ -228,68 +224,36 @@ def delete_chat(req, id=None):
     return redirect('main', 'chats')
 
 
-# def task_connect(req, id):
-#     task = TaskConnect.objects.get(id=id)
-#     photo = ''
-#     users = User_tg.objects.all()
-#     photo = task.photo_path
+def task_connect(req, id):
+    task = TaskConnect.objects.get(id=id)
+    photo = ''
+    users = User_tg.objects.all()
+    photo = task.photo_path
 
-#     if req.method == 'POST':
-#         data = req.POST
-#         user = User_tg.objects.get(phone=task.user_from)
-#         if task.user_to == '0':
-#             text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
-#             text_success = 'Данные профиля обновлены по вашей заявке'
-#         else:
-#             text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
-#             text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
-#         try:
-#             if 'delete' in data:
-#                 send_message(user.tg_id, text_alone)
-#                 pass
-#             elif 'connect' in data:
-#                 if photo:
-#                     user.photo = photo
-#                     user.save()
-#                 send_message(user.tg_id, text_success)
-#         except:
-#             pass
-#         task.delete()
-#         return redirect('main', 'task')
+    if req.method == 'POST':
+        data = req.POST
+        user = User_tg.objects.get(phone=task.user_from)
+        if task.user_to == '0':
+            text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
+            text_success = 'Данные профиля обновлены по вашей заявке'
+        else:
+            text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
+            text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
+        try:
+            if 'delete' in data:
+                send_message(user.tg_id, text_alone)
+                pass
+            elif 'connect' in data:
+                if photo:
+                    user.photo = photo
+                    user.save()
+                send_message(user.tg_id, text_success)
+        except:
+            pass
+        task.delete()
+        return redirect('main', 'task')
 
-#     return render(req, 'work/task_connect.html', {'task': task, 'photo': photo if photo else '', 'users': users})
-
-
-# def task_connect(req, id):
-#     task = TaskConnect.objects.get(id=id)
-#     photo = ''
-#     users = User_tg.objects.all()
-#     photo = task.photo_path
-
-#     if req.method == 'POST':
-#         data = req.POST
-#         user = User_tg.objects.get(phone=task.user_from)
-#         if task.user_to == '0':
-#             text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
-#             text_success = 'Данные профиля обновлены по вашей заявке'
-#         else:
-#             text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
-#             text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
-#         try:
-#             if 'delete' in data:
-#                 send_message(user.tg_id, text_alone)
-#                 pass
-#             elif 'connect' in data:
-#                 if photo:
-#                     user.photo = photo
-#                     user.save()
-#                 send_message(user.tg_id, text_success)
-#         except:
-#             pass
-#         task.delete()
-#         return redirect('main', 'task')
-
-#     return render(req, 'work/task_connect.html', {'task': task, 'photo': photo if photo else '', 'users': users})
+    return render(req, 'work/task_connect.html', {'task': task, 'photo': photo if photo else '', 'users': users})
 
 
 def add_ivent(req, id=None):
@@ -353,11 +317,10 @@ def add_mailing(req, id=None):
         print(str(data) + "test")
 
         if 'delete' in data and id:
-            print('rrr')
             mailing = Mailing.objects.get(id=id)
             mailing.delete()
-            return render(req, 'work/mailing.html')
-
+            return redirect('mailing')
+        print(id)
         if id:
             print("FFFFF")
             mailing = Mailing.objects.get(id=id)
@@ -365,8 +328,6 @@ def add_mailing(req, id=None):
             mailing.desc = data['desc'] if 'desc' in data else mailing.desc
             mailing.photo = data['photo'] if 'photo' in data else mailing.photo
             mailing.save()
-
-            mail_users(mailing, data)
 
             return render(req, 'work/mailing.html', {'mailing': mailing})
         else:
@@ -380,22 +341,19 @@ def add_mailing(req, id=None):
             mailing.numbers = data['our']
             mailing.save()
 
-            mail_users(mailing, data)
+        # send messages to the people
+        for phone in mailing.numbers.split():
+            print(phone)
+            try:
+                user = User_tg.objects.get(phone=phone)
+                send_message(user.tg_id, data['desc'])
+            except:
+                pass
 
-            return redirect('mailing', mailing.id)
+        return redirect('mailing', mailing.id)
 
     try:
         mailing = Mailing.objects.get(id=id)
         return render(req, 'work/mailing.html', {'mailing': mailing, 'users': users})
     except:
         return render(req, 'work/mailing.html', {'users': users})
-
-def mail_users(mailing, data):
-    # send messages to the people
-    for phone in mailing.numbers.split():
-        print(phone)
-        try:
-            user = User_tg.objects.get(phone=phone)
-            send_message(user.tg_id, data['desc'])
-        except:
-            pass
