@@ -174,24 +174,24 @@ def user_page(req, id=None):
             return render(req, 'work/user.html', {'user': user, 'ban': ban, 'messages': messages})
 
 
-# def statistic(req, id=None):
-#     """Страница пользователя"""
-#     if req.user.is_authenticated:
-#         stat = Statistic.objects.get(id=id)
-#         # user = User_tg.objects.get(phone=stat.user_phone)
-#
-#         if req.method == 'POST':
-#             data = req.POST.dict()
-#             # user.name = data['name']
-#             # user.save()
-#
-#             if 'delete' in data:
-#                 stat.delete()
-#                 return redirect('main', 'statistic')
-#
-#         if stat:
-#             return render(req, 'work/statistic.html', {'statistic': stat})
-#     return redirect('login')
+def statistic(req, id=None):
+    """Страница пользователя"""
+    if req.user.is_authenticated:
+        stat = Statistic.objects.get(id=id)
+        # user = User_tg.objects.get(phone=stat.user_phone)
+
+        if req.method == 'POST':
+            data = req.POST.dict()
+            # user.name = data['name']
+            # user.save()
+
+            if 'delete' in data:
+                stat.delete()
+                return redirect('main', 'statistic')
+
+        if stat:
+            return render(req, 'work/statistic.html', {'statistic': stat})
+    return redirect('login')
 
 
 def create_channel_view(req):
