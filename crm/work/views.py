@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.core.files.storage import default_storage
 
-from services.channels import add_admin, create_channel, change_channel, delete_channel, create_chat, send_message
+from services.channels import add_admin, create_channel, change_channel, delete_channel, create_chat, send_message, send_photo
 
 
 def main(req, page=None):
@@ -148,7 +148,9 @@ def user_page(req, id=None):
             file = req.FILES['photo']
             # file = data['photo']
             file_name = default_storage.save(f'/root/club2/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
-            user.photo = f'/root/club2/crm/media/{file_name}'
+            msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
+            # user.photo = f'/root/club2/crm/media/{file_name}'
+            user.photo = str(msg.file_id)
 
             user.about = data['about']
             user.about_1 = data['about_1']

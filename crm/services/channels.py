@@ -149,6 +149,17 @@ def send_message(user, message):
     client.disconnect()
 
 
+def send_photo(user, message, ph_file):
+    client = _get_client()
+    client.send_message(
+                    'mdstest_bot',
+                    f'/send {user} {message}',
+                file=ph_file
+                )
+
+    client.disconnect()
+
+
 def _get_client():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
