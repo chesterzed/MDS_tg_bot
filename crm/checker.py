@@ -41,11 +41,10 @@ def insert_to_tasks(connection, i_user_from, i_user, i_about, i_photo_path):
     connection.commit()
 
 
-def user_leave_checker():
+def user_leave_checker(connection):
     print("start checking...")
 
-    connection1 = db_connect()
-    users = get_table(connection1, "work_users")
+    users = get_table(connection, "work_users")
     today = date_to_float(date.today())  # how many day user left
     for row in users:
         print(row[1])
@@ -57,11 +56,40 @@ def user_leave_checker():
 
         if days_passed >= 3:
             print(row)
-            insert_to_tasks(connection1, row[1], -1, f"Не заходил в бота {days_passed} дней", '')
+            insert_to_tasks(connection, row[1], -1, f"Не заходил в бота {days_passed} дней", '')
 
-    connection1.commit()
+    connection.commit()
+
+
+def reg_users(connection):
+    cm = 0
+    au = 0
+    users = get_table(connection, "work_users")
+    stats = get_table(connection, "work_statistic")
+    today = date_to_float(date.today())
+    for u in users:
+        cm += 1
+        if date_to_float(u[12]) and (today - date_to_float(u[12])) / 86400 < 3:
+            au += 1
+
+    return cm, au
+
+
+obj_months = {'January': 'Январь', 'February': 'Февраль', 'March': 'Март', 'April ': 'Апрель',
+              'May': 'Май', 'June': 'Июнь', 'July': 'Июль', 'August': 'Август', 'September': 'Сентябрь',
+              'October': 'Октябрь', 'November': 'Ноябрь', 'December': 'Декабрь'}
+
+reg_last_month = 0
+reg_current_month = 0
+act_last_month = 0
+act_current_month = 0
+
+while True:
+    con = db_connect()
+    user_leave_checker(con)
+    reg_current_month, act_current_month = reg_users(con)
+    if reg_current_month == 1:
+        pass
+    # obj_months.get(date.today().strftime("%B"))
 
     time.sleep(86400)  #  Ожидание 24 часа
-
-
-user_leave_checker()
