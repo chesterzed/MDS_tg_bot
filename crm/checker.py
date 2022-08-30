@@ -44,7 +44,7 @@ def insert_to_tasks(connection, i_user_from, i_user, i_about, i_photo_path):
 def insert_to_stats(connection, i_month, i_year, i_reg_users, i_active_users, i_discard_users):
     table_query = f"""
     INSERT INTO work_statistic (month, year, reg_users, active_users, discard_users)
-    VALUES ( %s, %s, %s, %s, %s, %s)"""
+    VALUES ( %s, %s, %s, %s, %s)"""
 
     cursor = connection.cursor()
     li = (str(i_month), str(i_year), str(i_reg_users), str(i_active_users), str(i_discard_users))
