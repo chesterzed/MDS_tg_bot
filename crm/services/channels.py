@@ -151,13 +151,14 @@ def send_message(user, message):
 
 def send_photo(user, message, ph_file):
     client = _get_client()
-    client.send_message(
+    msg = client.send_message(
                     'mdstest_bot',
                     f'/send {user} {message}',
                 file=ph_file
                 )
 
     client.disconnect()
+    return msg
 
 
 def _get_client():
