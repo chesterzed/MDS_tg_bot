@@ -266,17 +266,17 @@
 
         {% if page == 'statistic' %}
 
-        {% for stat in statistic %}
-        <div class="el" id="{{stat.user_phone}}">
-            <a href="{% url 'statistic' stat.id %}" style="color:#000;">
-                <div class="templateCard">
-                    <div class="card-body">
-                        {{stat.user_phone}}
-                    </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
+{#        {% for stat in statistic %}#}
+{#        <div class="el" id="{{stat.user_phone}}">#}
+{#            <a href="{% url 'statistic' stat.id %}" style="color:#000;">#}
+{#                <div class="templateCard">#}
+{#                    <div class="card-body">#}
+{#                        {{stat.user_phone}}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+{#        {% endfor %}#}
 
             <table class="table">
                 <tbody style="width: 30vw;">
