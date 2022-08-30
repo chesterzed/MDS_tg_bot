@@ -153,8 +153,6 @@ while True:
 
     reg_current_month, act_current_month = reg_users(usrs, act_current_month)
     if obj_months.get(date.today().strftime("%B")) == stats[-1][1]:  #  daily update
-        stats[-1][3] = reg_current_month
-        stats[-1][4] = act_current_month
         update_stats(
             con,
             stats[-1][1],
