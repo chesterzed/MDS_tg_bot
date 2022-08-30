@@ -98,6 +98,7 @@ class Mailing(models.Model):
 class Statistic(models.Model):
     """Рассылки"""
     month = models.CharField(max_length=300)
+    year = models.CharField(max_length=300)
     reg_users = models.CharField(max_length=300)
     active_users = models.CharField(max_length=300)
     discard_users = models.CharField(max_length=300)

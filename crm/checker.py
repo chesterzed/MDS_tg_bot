@@ -123,6 +123,8 @@ while True:
     usrs = get_table(con, "work_users")
     stats = get_table(con, "work_statistic")
 
+    print(stats)
+
     for s in stats:
         if stats[-1].month == s.month and stats[-1].year == s.year:
             break
