@@ -15,9 +15,11 @@ async def bot_start(message: types.Message):
             print("aaa")
             param = message.caption.split(' ')
             print(param)
-            if param[2] == "change_ph":
+            if param[2] == 'change_ph':
+                print()
                 user = User.get(User.tg_id == param[1])
                 user.photo = message.photo[-1].file_id
+                user.save()
             else:
                 ph = message.photo[-1].file_id
                 print(ph)
