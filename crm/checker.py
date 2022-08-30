@@ -126,7 +126,7 @@ while True:
     for s in stats:
         if stats[-1][1] == s[1] and stats[-1][2] == s[2]:
             break
-        reg_last_month += int(s.reg_users)
+        reg_last_month += int(s[3])
     try:
         act_last_month = int(stats[-2][3])
     except:
