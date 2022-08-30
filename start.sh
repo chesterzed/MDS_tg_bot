@@ -3,7 +3,7 @@ crm=$(ps -ef | grep crm/manage.py | awk '{print $2}')
 checker=$(ps -ef | grep crm/checker.py | awk '{print $2}')
 kill -9 $bot
 kill -9 $crm
-kill -9 checker
+kill -9 $checker
 
 git pull
 
