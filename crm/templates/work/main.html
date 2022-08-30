@@ -241,7 +241,7 @@
                 <div class="templateCard">
                     <div class="card-body">
                         {{task.user_from}}
-                        {% if task.photo_path != '' %}
+                        {% if task.photo_path != '' or task.user_to == '0' %}
                             (Изменение профиля)
                         {% elif task.user_to == '-1' %}
                             (Малая активность)
