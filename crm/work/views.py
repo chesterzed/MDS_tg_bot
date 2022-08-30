@@ -140,19 +140,15 @@ def user_page(req, id=None):
         
         if req.method == 'POST':
             data = req.POST.dict()
-            print(data)
-            print(req.FILES['photo'])
-            print(req.FILES)
-            # user.name = req.FILES['name']
-
-            file = req.FILES['photo']
-            # file = data['photo']
-            file_name = default_storage.save(f'/root/club2/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
-            msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
-            print(msg.photo[-1].file_id)
-            # user.photo = f'/root/club2/crm/media/{file_name}'
-            user.photo = str(msg.photo[-1].file_id)
-
+            try:
+                file = req.FILES['photo']
+                file_name = default_storage.save(f'/root/club2/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
+                msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
+                print(msg.photo[-1].file_id)
+                # user.photo = f'/root/club2/crm/media/{file_name}'
+                user.photo = str(msg.photo[-1].file_id)
+            except:
+                pass
             user.about = data['about']
             user.about_1 = data['about_1']
             user.about_2 = data['about_2']
