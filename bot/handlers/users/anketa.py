@@ -8,6 +8,8 @@ from states import Anketa
 from sql import User
 from keyboards.default import main_kb
 
+from crm.checker import update_stats, get_table, db_connect
+
 
 @dp.message_handler(content_types=['contact'], state=Anketa.name)
 async def phone(message: types.Message, state: FSMContext):
@@ -44,4 +46,14 @@ async def phone(message: types.Message, state: FSMContext):
     
     except Exception as e:
         # print(e)
+        con = db_connect()
+        stats = get_table(con, "work_statistic")
+        update_stats(
+            con,
+            stats[-1][1],
+            stats[-1][2],
+            stats[-1][3],
+            stats[-1][4],
+            int(stats[-1][4]) + 1
+        )
         await message.answer('Вас нет в базе, обратитесь к администритору')
