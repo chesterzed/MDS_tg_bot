@@ -8,7 +8,7 @@ from states import Anketa
 from sql import User
 from keyboards.default import main_kb
 
-from crm.checker import update_stats, get_table, db_connect
+from club2.crm.checker import update_stats, get_table, db_connect
 
 
 @dp.message_handler(content_types=['contact'], state=Anketa.name)
