@@ -17,7 +17,7 @@
                 <tbody style="width: 30vw;">
                     <tr>
                         <td>
-                            {% if task.user_to == '0' %}
+                            {% if task.user_to <= '0' %}
                             Пользователь
                             {% else %}
                             Кто хочет связаться
@@ -34,7 +34,7 @@
                             <!-- <a href="{% url 'user' 43 %}">{{task.user_from}}</a> -->
                         </td>
                     </tr>
-                    {% if task.user_to != '0' %}
+                    {% if task.user_to > '0' %}
                     <tr>
                         <td>С кем хочет связаться</td>
                         <td>
@@ -44,7 +44,7 @@
                     {% endif %}
                     <tr>
                         <td>
-                            {% if task.user_to == '0' %}
+                            {% if task.user_to <= '0' %}
                             Что изменить
                             {% else %}
                             Зачем хочет связаться
@@ -52,7 +52,7 @@
                         </td>
                         <td>
                             {% if photo %}
-                            изменение фото
+                            изменение фото | {{task.about}}
                             {% else %}
                             {{task.about}}
                             {% endif %}

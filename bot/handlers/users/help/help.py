@@ -44,7 +44,7 @@ async def desc(message: types.Message):
         user_from = User.get(User.tg_id == message.from_user.id)
         task = TaskConnect()
         task.user_from = user_from.phone
-        task.user_to = 0
+        task.user_to = -2
         task.about = str(message.text)
         if message.photo:
             task.about = str(message.caption)

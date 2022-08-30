@@ -242,9 +242,13 @@
                     <div class="card-body">
                         {{task.user_from}}
                         {% if task.photo_path != '' %}
-                        (изменение профиля)
+                            (Изменение профиля)
+                        {% elif task.user_to == '-1' %}
+                            (Малая активность)
+                        {% elif task.user_to == '-2' %}
+                            (Помощь)
                         {% else %}
-                        (нетворкинг)
+
                         {% endif %}
                     </div>
                 </div>
@@ -291,11 +295,6 @@
                 <div class="templateCard">
                     <div class="card-body">
                         {{ivent.name}}
-                        <!-- {% if task.user_to == '0' %}
-                        (изменение профиля)
-                        {% else %}
-                        (нетворкинг)
-                        {% endif %} -->
                     </div>
                 </div>
             </a>

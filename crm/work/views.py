@@ -268,12 +268,12 @@ def task_connect(req, id):
     if req.method == 'POST':
         data = req.POST
         user = User_tg.objects.get(phone=task.user_from)
-        if task.user_to == '0':
+        if task.user_to <= '0':
             text_alone = 'Ваша заявка на изменение профиля не прошла модерацию, свяжитесь с поддержкой'
             text_success = 'Данные профиля обновлены по вашей заявке'
         else:
             text_alone = 'Вы отправляли заявку связаться с пользователем. К сожалению он не захотел связываться'
-            text_success = f'Вы отправляли заявку связаться с пользователем. Вот его намер телефона \n{task.user_to}'
+            text_success = f'Вы отправляли заявку связаться с пользователем. Вот его номер телефона \n{task.user_to}'
         try:
             if 'delete' in data:
                 send_message(user.tg_id, text_alone)
