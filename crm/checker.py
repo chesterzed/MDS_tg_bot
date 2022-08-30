@@ -157,7 +157,7 @@ while True:
             stats[-1][2],
             reg_current_month - reg_last_month,
             act_current_month,
-            0
+            stats[-1][5]
         )
 
     time.sleep(86400)  #  Ожидание 24 часа
