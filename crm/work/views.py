@@ -146,7 +146,7 @@ def user_page(req, id=None):
             msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
             print("from user bot" + str(msg))
             ph_id = str(msg.media)
-            print(ph_id)
+            # print(ph_id)
             # user.photo = f'/root/club2/crm/media/{file_name}'
             print("smth interesting")
             user.photo = ph_id
@@ -216,7 +216,7 @@ def create_channel_view(req):
 
 
 def channel_view(req, id):
-    print(id)
+    # print(id)
     """Просмотр и редактирование канала"""
     channel = Channel.objects.get(id=id)
 
@@ -347,11 +347,11 @@ def add_ivent(req, id=None):
 
 def add_mailing(req, id=None):
     users = User_tg.objects.all()
-    print(id)
+    # print(id)
     """Создать мероприятие"""
     if req.method == 'POST':
         data = req.POST.dict()
-        print(str(data) + "test")
+        # print(str(data) + "test")
 
         if 'delete' in data and id:
             mailing = Mailing.objects.get(id=id)
