@@ -148,6 +148,7 @@ def user_page(req, id=None):
                 print(ph_id)
                 # user.photo = f'/root/club2/crm/media/{file_name}'
                 user.photo = ph_id
+                print("to_bd_finish")
             except:
                 pass
             user.about = data['about']
