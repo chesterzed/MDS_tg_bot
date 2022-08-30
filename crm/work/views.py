@@ -141,6 +141,7 @@ def user_page(req, id=None):
         if req.method == 'POST':
             data = req.POST.dict()
             print(data)
+            print(req.FILES['photo'])
             print(req.FILES)
             # user.name = req.FILES['name']
 
