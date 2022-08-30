@@ -8,7 +8,7 @@ from loader import dp, bot
 async def bot_start(message: types.Message):
     """Рассылка приглашений в гильдии, чаты"""
     try:
-        print("test" + str(message))
+        print("test sadkjasnd kjsandj snadkjasn dkjasn" + str(message))
         if message.photo:
             print("aaa")
             param = message.caption.split(' ')
