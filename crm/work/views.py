@@ -145,8 +145,8 @@ def user_page(req, id=None):
             file_name = default_storage.save(f'/root/club2/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
             msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
             print("from user bot" + str(msg))
-            ph_id = str(msg.photo[-1].file_id)
-            # print(ph_id)
+            ph_id = str(msg.media)
+            print(ph_id)
             # user.photo = f'/root/club2/crm/media/{file_name}'
             print("smth interesting")
             user.photo = ph_id
