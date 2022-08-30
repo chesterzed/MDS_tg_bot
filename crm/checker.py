@@ -126,16 +126,16 @@ while True:
     print(stats)
 
     for s in stats:
-        if stats[-1].month == s.month and stats[-1].year == s.year:
+        if stats[-1][1] == s[1] and stats[-1][2] == s[2]:
             break
         reg_last_month += int(s.reg_users)
 
-    act_last_month = int(stats[-2].active_users)
-    act_current_month = int(stats[-1].active_users)
-    reg_current_month = reg_last_month + int(stats[-1].reg_users)
+    act_last_month = int(stats[-2][3])
+    act_current_month = int(stats[-1][4])
+    reg_current_month = reg_last_month + int(stats[-1][3])
 
     user_leave_checker(con, usrs)
-    if obj_months.get(date.today().strftime("%B")) != stats[-1].month:  #  creating NEW
+    if obj_months.get(date.today().strftime("%B")) != stats[-1][1]:  #  creating NEW
         reg_last_month = reg_current_month
         act_last_month = act_current_month
         act_current_month = 0
@@ -150,13 +150,13 @@ while True:
         stats = get_table(con, "work_statistic")
 
     reg_current_month, act_current_month = reg_users(usrs, act_current_month)
-    if obj_months.get(date.today().strftime("%B")) == stats[-1].month:  #  daily update
-        stats[-1].reg_users = reg_current_month
-        stats[-1].active_users = act_current_month
+    if obj_months.get(date.today().strftime("%B")) == stats[-1][1]:  #  daily update
+        stats[-1][3] = reg_current_month
+        stats[-1][4] = act_current_month
         update_stats(
             con,
-            stats[-1].month,
-            stats[-1].year,
+            stats[-1][1],
+            stats[-1][2],
             reg_current_month - reg_last_month,
             act_current_month,
             0
