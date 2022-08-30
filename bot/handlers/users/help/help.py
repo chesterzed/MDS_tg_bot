@@ -26,8 +26,8 @@ async def use(message: types.Message):
 @dp.message_handler(Text(contains='Сформировать индивидуальный запрос', ignore_case=True), state=Help.start)
 async def answer(message: types.Message):
     update_user_last_in(message.from_user.id)
-    await Help.oborot.set()
-    await message.answer("Какой у вас оборот баланса", reply_markup=ReplyKeyboardRemove())
+    await Help.desc.set()
+    await message.answer("Опишите ваш запрос текстом не более чем 200 символов", reply_markup=ReplyKeyboardRemove())
 
 
 @dp.message_handler(state=Help.oborot)
