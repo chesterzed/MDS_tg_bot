@@ -142,7 +142,7 @@ def user_page(req, id=None):
             data = req.POST.dict()
             print(data)
             print(req.FILES)
-            user.name = req.FILES['name']
+            # user.name = req.FILES['name']
 
             file = req.FILES['photo']
             # file = data['photo']
