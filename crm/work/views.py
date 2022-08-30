@@ -151,7 +151,7 @@ def user_page(req, id=None):
             msg = send_photo(user.tg_id, "фото было изменено на:", f'/root/club2/crm/media/{file_name}')
             print(msg.photo[-1].file_id)
             # user.photo = f'/root/club2/crm/media/{file_name}'
-            # user.photo = str(msg.file_id)
+            user.photo = str(msg.photo[-1].file_id)
 
             user.about = data['about']
             user.about_1 = data['about_1']
