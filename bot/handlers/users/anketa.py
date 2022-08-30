@@ -8,7 +8,7 @@ from states import Anketa
 from sql import User
 from keyboards.default import main_kb
 
-from root.club2.crm.checker import update_stats, get_table, db_connect
+from mysql.connector import connect
 
 
 @dp.message_handler(content_types=['contact'], state=Anketa.name)
@@ -57,3 +57,46 @@ async def phone(message: types.Message, state: FSMContext):
             int(stats[-1][4]) + 1
         )
         await message.answer('Вас нет в базе, обратитесь к администритору')
+
+
+def db_connect():
+    try:
+        return connect(  # DB connection
+            host="5.23.53.158",
+            user="gen_user",
+            password="mgx37gvw66",
+            db="default_db",
+            port=3306
+        )
+    except:
+        return False
+
+
+def get_table(connection, table):
+    table_query = f"SELECT * FROM {table}"
+    cursor = connection.cursor()
+    cursor.execute(table_query)
+    return cursor.fetchall()
+
+
+def update_stats(connection, i_month, i_year, i_reg_users, i_active_users, i_discard_users):
+    table_query = f"""
+    UPDATE 
+        work_statistic 
+    SET
+        reg_users = "%s", 
+        active_users = "%s", 
+        discard_users = "%s"
+    WHERE 
+        month = "%s" AND year = "%s";
+    """ % (
+        i_reg_users,
+        i_active_users,
+        i_discard_users,
+        i_month,
+        i_year
+    )
+
+    cursor = connection.cursor()
+    cursor.execute(table_query)
+    connection.commit()

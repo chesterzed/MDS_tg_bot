@@ -71,7 +71,6 @@ def update_stats(connection, i_month, i_year, i_reg_users, i_active_users, i_dis
     )
 
     cursor = connection.cursor()
-    li = (str(i_month), str(i_year), str(i_reg_users), str(i_active_users), str(i_discard_users))
     cursor.execute(table_query)
     connection.commit()
 
