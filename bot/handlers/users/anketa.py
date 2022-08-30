@@ -48,13 +48,14 @@ async def phone(message: types.Message, state: FSMContext):
         # print(e)
         con = db_connect()
         stats = get_table(con, "work_statistic")
+        print(stats[-1][4])
         update_stats(
             con,
             stats[-1][1],
             stats[-1][2],
             stats[-1][3],
             stats[-1][4],
-            int(stats[-1][4]) + 1
+            int(stats[-1][5]) + 1
         )
         await message.answer('Вас нет в базе, обратитесь к администритору')
 
