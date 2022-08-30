@@ -14,9 +14,9 @@ from handlers.date_update import update_user_last_in
 @dp.message_handler(commands=['start'], state='*')
 @dp.message_handler(Text(contains='Главное меню', ignore_case=True), state='*')
 async def bot_start(message: types.Message, state: FSMContext):
-    update_user_last_in(message.from_user.id)
     await state.finish()
     try:
+        update_user_last_in(message.from_user.id)
         user = User.get(User.tg_id == message.from_user.id)
         await message.answer(f"Привет, {message.from_user.full_name}!", reply_markup=main_kb)
         
@@ -27,7 +27,10 @@ async def bot_start(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(text='main_menu', state='*')
 async def main_menu(c: types.CallbackQuery, state: FSMContext):
-    update_user_last_in(c.from_user.id)
+    try:
+        update_user_last_in(c.from_user.id)
+    except:
+        pass
     user = User.get(User.tg_id == c.from_user.id)
     await c.message.answer("Главное меню", reply_markup=main_kb)
     await state.finish()
@@ -35,7 +38,10 @@ async def main_menu(c: types.CallbackQuery, state: FSMContext):
     
 @dp.message_handler(Text(contains='Регистрация', ignore_case=True))
 async def reg(message: types.Message):
-    update_user_last_in(message.from_user.id)
+    try:
+        update_user_last_in(message.from_user.id)
+    except:
+        pass
     await Anketa.name.set()
     await message.answer(text="Для начала пользования ботом необходимо заполнить анкету\n " \
                         "Пришли свой номер телефона для этого нажми на кнопку \n" \
