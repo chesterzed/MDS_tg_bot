@@ -147,8 +147,8 @@ def user_page(req, id=None):
 
             file = req.FILES['photo']
             # file = data['photo']
-            file_name = default_storage.save(f'/root/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
-            user.photo = f'/root/crm/media/{file_name}'
+            file_name = default_storage.save(f'/root/club2/crm/media/{user.phone}.{str(file).split(".")[-1]}', file)
+            user.photo = f'/root/club2/crm/media/{file_name}'
 
             user.about = data['about']
             user.about_1 = data['about_1']
