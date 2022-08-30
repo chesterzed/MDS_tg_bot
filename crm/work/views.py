@@ -147,7 +147,7 @@ def user_page(req, id=None):
             ph_id = str(msg.media)
             # user.photo = f'/root/club2/crm/media/{file_name}'
             print("smth interesting")
-            user.photo = ph_id
+            # user.photo = ph_id
             print("to_bd_finish")
             # except:
             #     pass
