@@ -22,7 +22,7 @@ async def bot_start(message: types.Message, state: FSMContext):
         
     except Exception as e:
         await message.answer(f"Привет, {message.from_user.full_name}!", reply_markup=reg_kb)
-        await bot.send_message(chat_id=1691052907, text=f"Ошибка при входе: {e}")
+        # await bot.send_message(chat_id=1691052907, text=f"Ошибка при входе: {e}")
 
 
 @dp.callback_query_handler(text='main_menu', state='*')
