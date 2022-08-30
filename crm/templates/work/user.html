@@ -28,7 +28,20 @@
                         <td>Фото</td>
                         <td>
                             <input type="file" name="photo" class="searchInptPhoto" id="fileName" accept=".jpg,.png"
-                                onchange="validateFileType()" style="border: 0;">
+                                onchange="validateFileType()" style="border: 0;" required>
+                            <script type="text/javascript">
+                                function validateFileType() {
+                                    var fileName = document.getElementById("fileName").value;
+                                    var idxDot = fileName.lastIndexOf(".") + 1;
+                                    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                                    if (extFile == "jpg" || extFile == "png") {
+                                        //TO DO
+                                    } else {
+                                        alert("Только jpg или png можно выбрать!");
+                                        document.getElementById('fileName').value = '';
+                                    }
+                                }
+                            </script>
                         </td>
                     </tr>
                 </tbody>
