@@ -41,10 +41,44 @@ def insert_to_tasks(connection, i_user_from, i_user, i_about, i_photo_path):
     connection.commit()
 
 
-def user_leave_checker(connection):
+def insert_to_stats(connection, i_month, i_year, i_reg_users, i_active_users, i_discard_users):
+    table_query = f"""
+    INSERT INTO work_statistic (month, year, reg_users, active_users, discard_users)
+    VALUES ( %s, %s, %s, %s, %s, %s)"""
+
+    cursor = connection.cursor()
+    li = (str(i_month), str(i_year), str(i_reg_users), str(i_active_users), str(i_discard_users))
+    cursor.execute(table_query, li)
+    connection.commit()
+
+
+def update_stats(connection, i_month, i_year, i_reg_users, i_active_users, i_discard_users):
+    table_query = f"""
+    UPDATE 
+        work_statistic 
+    SET
+        reg_users = "%s", 
+        active_users = "%s", 
+        discard_users = "%s"
+    WHERE 
+        month = "%s" AND year = "%s";
+    """ % (
+        i_reg_users,
+        i_active_users,
+        i_discard_users,
+        i_month,
+        i_year
+    )
+
+    cursor = connection.cursor()
+    li = (str(i_month), str(i_year), str(i_reg_users), str(i_active_users), str(i_discard_users))
+    cursor.execute(table_query, li)
+    connection.commit()
+
+
+def user_leave_checker(connection, users):
     print("start checking...")
 
-    users = get_table(connection, "work_users")
     today = date_to_float(date.today())  # how many day user left
     for row in users:
         print(row[1])
@@ -61,16 +95,16 @@ def user_leave_checker(connection):
     connection.commit()
 
 
-def reg_users(connection):
+def reg_users(users, au_f):
     cm = 0
     au = 0
-    users = get_table(connection, "work_users")
-    stats = get_table(connection, "work_statistic")
     today = date_to_float(date.today())
     for u in users:
         cm += 1
         if date_to_float(u[12]) and (today - date_to_float(u[12])) / 86400 < 3:
             au += 1
+    if au_f > au:
+        au = au_f
 
     return cm, au
 
@@ -86,10 +120,44 @@ act_current_month = 0
 
 while True:
     con = db_connect()
-    user_leave_checker(con)
-    reg_current_month, act_current_month = reg_users(con)
-    if reg_current_month == 1:
-        pass
-    # obj_months.get(date.today().strftime("%B"))
+    usrs = get_table(con, "work_users")
+    stats = get_table(con, "work_statistic")
+
+    for s in stats:
+        if stats[-1].month == s.month and stats[-1].year == s.year:
+            break
+        reg_last_month += int(s.reg_users)
+
+    act_last_month = int(stats[-2].active_users)
+    act_current_month = int(stats[-1].active_users)
+    reg_current_month = reg_last_month + int(stats[-1].reg_users)
+
+    user_leave_checker(con, usrs)
+    if obj_months.get(date.today().strftime("%B")) != stats[-1].month:  #  creating NEW
+        reg_last_month = reg_current_month
+        act_last_month = act_current_month
+        act_current_month = 0
+        insert_to_stats(
+            con,
+            obj_months.get(date.today().strftime("%B")),
+            date.today().year,
+            0,
+            0,
+            0
+        )
+        stats = get_table(con, "work_statistic")
+
+    reg_current_month, act_current_month = reg_users(usrs, act_current_month)
+    if obj_months.get(date.today().strftime("%B")) == stats[-1].month:  #  daily update
+        stats[-1].reg_users = reg_current_month
+        stats[-1].active_users = act_current_month
+        update_stats(
+            con,
+            stats[-1].month,
+            stats[-1].year,
+            reg_current_month - reg_last_month,
+            act_current_month,
+            0
+        )
 
     time.sleep(86400)  #  Ожидание 24 часа
