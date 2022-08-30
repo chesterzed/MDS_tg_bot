@@ -143,9 +143,9 @@ def user_page(req, id=None):
             print(data)
             print(req.FILES)
             user.name = data['name']
-            # user.photo = f"../crm/media/{data['phone']}.{str(file.name).split('.')[-1]}"
-            file = req.FILES['photo']
-            # send_message('', '')
+
+            # file = req.FILES['photo']
+            file = data['photo']
             file_name = default_storage.save(f'/root/crm/media/{user.phone}.{str(file.name).split(".")[-1]}', file)
             user.photo = f'/root/crm/media/{file_name}'
 
