@@ -80,4 +80,4 @@ if __name__ == '__main__':
     while True:
         db.close()
         db.connect()
-        time.sleep(9000)
+        time.sleep(900)
