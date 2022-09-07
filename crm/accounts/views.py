@@ -11,7 +11,7 @@ def login_page(req):
     if req.method == 'POST':
         user = auth.authenticate(phone=req.POST['phone'], password=req.POST['passwd'])
         if user == None:
-            messages.append('Неверный логин или пароль, пожалуйста, проверьте правильность заполнения полей и попробуйте снова!')
+            messages.append('Неверные данные или вас нет у нас в базе, попробуйте ещё раз или обратитесь к администратору.')
         else:
             login(req, user)
             return redirect('main', 'manage')
