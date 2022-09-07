@@ -66,10 +66,6 @@
             {% endif %}
 
             {% if request.user.chat_manage %}
-            <li class="navItem" id="ivent"><a href="{% url 'main' 'ivent' %}" style="color: #0e1f4d;">Мероприятия</a>
-            </li>{% endif %}
-
-            {% if request.user.chat_manage %}
             <li class="navItem" id="mailing"><a href="{% url 'main' 'mailing' %}" style="color: #0e1f4d;">Рассылка</a>
             </li>{% endif %}
         </ul>
@@ -181,7 +177,7 @@
 
         {% if page == 'chats' %}
 
-        {% for chat in chats %}
+        {% for channel in channels %}
         <div class="el" id="{{channel.name}}">
             <!-- <a href="{% url 'channel' channel.id %}" style="color:#000;"> -->
             <div class="templateCard">
