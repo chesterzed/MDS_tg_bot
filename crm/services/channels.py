@@ -111,6 +111,7 @@ def create_chat(title, users):
         link = client(ExportChatInviteRequest(id_chat)).link
 
         chat = Chat()
+        chat.name = title
         chat.link = link
         chat.tg_id = id_chat
         chat.save()

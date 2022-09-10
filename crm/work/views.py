@@ -243,12 +243,12 @@ def create_chat_view(req):
     """Создание канала"""
     if req.method == 'POST':
         data = req.POST.dict()
-        chat = Chat()
-        chat.name = data['name']
-        chat.save()
+        # chat = Chat()
+        # chat.name = data['name']
+        # chat.save()
 
         users = data['username'].replace("@", '').replace(' ', '').split(',')
-        create_chat(title=chat.name, users=users)
+        create_chat(title=data['name'], users=users)
         return redirect('main', 'chats')
 
     return render(req, 'work/createchat.html')
