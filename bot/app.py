@@ -18,6 +18,7 @@ async def on_startup(dispatcher):
     # Уведомляет про запуск
     await on_startup_notify(dispatcher)
 
+
 async def on_startup_h(dp):
     await bot.set_webhook(h.WEBHOOK_URL_BASE)
     # insert code here to run it after start
