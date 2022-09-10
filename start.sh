@@ -7,6 +7,6 @@ kill -9 $checker
 
 git pull
 
-./start_bot.sh
 python3 crm/manage.py runserver 109.68.213.180:1000 &
 python3 crm/checker.py &
+sh start_bot.sh
