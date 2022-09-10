@@ -134,6 +134,7 @@ while True:
     act_current_month = int(stats[-1][4])
     reg_current_month = reg_last_month + int(stats[-1][3])
 
+
     user_leave_checker(con, usrs)
     if obj_months.get(date.today().strftime("%B")) != stats[-1][1]:  #  creating NEW
         reg_last_month = reg_current_month
