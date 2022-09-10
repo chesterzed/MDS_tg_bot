@@ -66,7 +66,7 @@
             {% endif %}
 
             {% if request.user.chat_manage %}
-            <li class="navItem" id="ivent"><a href="{% url 'main' 'ivent' %}" style="color: #0e1f4d;">Мероприятие</a>
+            <li class="navItem" id="ivent"><a href="{% url 'main' 'ivent' %}" style="color: #0e1f4d;">Мероприятия</a>
             </li>{% endif %}
 
             {% if request.user.chat_manage %}
@@ -242,13 +242,13 @@
                     <div class="card-body">
                         {{task.user_from}}
                         {% if task.photo_path != '' or task.user_to == '0' %}
-                            (Изменение профиля)
+                        (Изменение профиля)
                         {% elif task.user_to == '-1' %}
-                            (Малая активность)
+                        (Малая активность)
                         {% elif task.user_to == '-2' %}
-                            (Помощь)
+                        (Помощь)
                         {% else %}
-                            (Нетворкинг)
+                        (Нетворкинг)
                         {% endif %}
                     </div>
                 </div>
@@ -266,24 +266,24 @@
 
         {% if page == 'statistic' %}
 
-            <table class="table">
-                <tbody style="width: 30vw;">
-                    <tr>
-                        <td>Месяц</td>
-                        <td>Зарегистрированных пользователей</td>
-                        <td>Активных пользователей</td>
-                        <td>Отклонённых пользователей</td>
-                    </tr>
+        <table class="table">
+            <tbody style="width: 30vw;">
+                <tr>
+                    <td>Месяц</td>
+                    <td>Зарегистрированных пользователей</td>
+                    <td>Активных пользователей</td>
+                    <td>Отклонённых пользователей</td>
+                </tr>
                 {% for stat in statistic %}
-                    <tr>
-                        <td>{{stat.month}}</td>
-                        <td>{{stat.reg_users}}</td>
-                        <td>{{stat.active_users}}</td>
-                        <td>{{stat.discard_users}}</td>
-                    </tr>
+                <tr>
+                    <td>{{stat.month}}</td>
+                    <td>{{stat.reg_users}}</td>
+                    <td>{{stat.active_users}}</td>
+                    <td>{{stat.discard_users}}</td>
+                </tr>
                 {% endfor %}
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
         <script>
             var el = document.getElementById('statistic')
