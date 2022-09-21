@@ -1,7 +1,7 @@
 from requests import delete
 from accounts.models import User
 
-from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing, Statistic
+from .models import Channel, Ivent, User_tg, Chat, TaskConnect, Mailing, Statistic, SolvedTasks
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
@@ -267,6 +267,7 @@ def delete_chat(req, id=None):
 
 def task_connect(req, id):
     task = TaskConnect.objects.get(id=id)
+    solvedTask = SolvedTasks()
     photo = ''
     users = User_tg.objects.all()
     photo = task.photo_path
@@ -291,6 +292,13 @@ def task_connect(req, id):
                 send_message(user.tg_id, text_success)
         except:
             pass
+
+        solvedTask.user_from = task.user_from
+        solvedTask.user_to = task.user_to
+        solvedTask.about = task.about
+        solvedTask.photo_path = task.photo_path
+        solvedTask.save()
+
         task.delete()
         return redirect('main', 'task')
 

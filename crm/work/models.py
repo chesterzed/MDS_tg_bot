@@ -118,3 +118,15 @@ class TaskConnect(models.Model):
     class Meta:
         verbose_name = "Таск"
         verbose_name_plural = "Таски"
+
+
+class SolvedTasks(models.Model):
+    """Таск по связыванию пользователей через нетворкинг"""
+    user_from = models.CharField(max_length=100)
+    user_to = models.CharField(max_length=100)
+    about = models.TextField()
+    photo_path = models.TextField()
+
+    class Meta:
+        verbose_name = "Таск"
+        verbose_name_plural = "Таски"
