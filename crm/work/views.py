@@ -52,8 +52,8 @@ def main(req, page=None):
 
 
 def user_count():
-    print(User.objects.all())
-    return len(User.objects.all())
+    print(User_tg.objects.all())
+    return len(User_tg.objects.all())
 
 
 def create_staf(req):
