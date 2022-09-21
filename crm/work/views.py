@@ -51,6 +51,9 @@ def main(req, page=None):
         return redirect('login')
 
 
+def user_count():
+    print(User.objects.all())
+    return len(User.objects.all())
 
 
 def create_staf(req):
@@ -175,9 +178,6 @@ def user_page(req, id=None):
             ban = '_ban' in user.tg_id
             return render(req, 'work/user.html', {'user': user, 'ban': ban, 'messages': messages})
 
-
-def user_count():
-    return len(User.objects.all())
 
 def statistic(req, id=None):
     """Страница пользователя"""
