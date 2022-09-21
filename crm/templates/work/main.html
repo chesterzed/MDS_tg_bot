@@ -265,7 +265,14 @@
 
 
         {% if page == 'statistic' %}
-
+        <table class="table">
+            <tbody style="width: 30vw;">
+                <tr>
+                    <td>Всего зарегистрированных пользователей</td>
+                    <td>{{ users_count }}</td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table">
             <tbody style="width: 30vw;">
                 <tr>

@@ -41,7 +41,7 @@ def main(req, page=None):
         elif page == 'statistic':
             """Страница управления контентом"""
             stat = Statistic.objects.all()
-            return render(req, 'work/main.html', {'statistic': stat, 'page': page})
+            return render(req, 'work/main.html', {'users_count': user_count(), 'statistic': stat, 'page': page})
 
         else:
             users = User.objects.all()
@@ -49,6 +49,8 @@ def main(req, page=None):
 
     else:
         return redirect('login')
+
+
 
 
 def create_staf(req):
@@ -173,6 +175,9 @@ def user_page(req, id=None):
             ban = '_ban' in user.tg_id
             return render(req, 'work/user.html', {'user': user, 'ban': ban, 'messages': messages})
 
+
+def user_count():
+    return len(User.objects.all())
 
 def statistic(req, id=None):
     """Страница пользователя"""
